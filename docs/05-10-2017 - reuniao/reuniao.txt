@@ -1,0 +1,32 @@
+IDEIAS
+
+- Programa gravado em memoria
+- 5 niveis de execucao paralela em Pipeline (
+	- Busca de Instrucao em Memoria
+	- Decodificacao da Instrucao e Leitura de Registrador
+	- Execucao da Instrucao / Calculo de Endereco
+	- Acesso a um operando na Memoria
+	- Escrita do resultado em registrador
+)
+- Tamamho Fixo de Instrucoes
+- Utilizar 2 bits para identificar modo de enderecamento
+
+FATOS
+
+- 32 bits
+- Implementar 3 modos de endrecamento (
+	- Imediato
+	- Base-Deslocamento
+	- A Registrador
+)
+
+METAS
+
+- Avaliar documentacao da FPGA Altera DE2-115
+- Quais estagios sao necessarios para cada instrucao
+- Definir formato da instrucao:
+	
+- Entender cada bloco da arquitetura
+- Definir blocos da arquitetura
+- Entender funcionamento do pipeline
+- Uso do GitHub e Discord
