@@ -1,0 +1,19 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"lab4.sublime-project",
+				"modelsim/modelsim.cr.mti",
+				"modelsim/modelsim.mpf"
+			],
+			"folder_exclude_patterns":
+			[
+				"docs",
+				"modelsim/work"
+			],
+			"path": "."
+		}
+	]
+}

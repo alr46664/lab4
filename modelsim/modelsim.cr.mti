@@ -1,0 +1,29 @@
+{C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module ula_testbench
+
+Top level modules:
+	ula_testbench
+
+} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module add
+
+Top level modules:
+	add
+
+} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/compl2.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/compl2.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module compl2
+
+Top level modules:
+	compl2
+
+} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula.v} {1 {vlog -work work -stats=none {C:\Users\Andre Luiz\Documents\A - LABORATORIO INTEGRADO IV\modelsim\ula.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module ula
+
+Top level modules:
+	ula
+
+} {} {}}
