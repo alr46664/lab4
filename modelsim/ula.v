@@ -6,13 +6,13 @@ module ula( opcode,     // codigo da instrucao
 );
 
 // faz o include dos parameters das instrucoes
-`include "params.v"
+`include "params_proc.v"
 
 // entradas e saidas
 input [OPCODE_WIDTH-1:0] opcode;
-input [DATA_WIDTH-1:0] data1, data2;
+input signed [DATA_WIDTH-1:0] data1, data2;
 
-output reg [DATA_WIDTH-1:0] out;
+output reg signed [DATA_WIDTH-1:0] out;
 output reg [4:0] rflags;
 
 // variaveis auxiliares
@@ -20,7 +20,7 @@ reg xor_data12_sign;
 reg [DATA_WIDTH-1:0] data1_aux, data2_aux, out_aux;
 
 // declaracao dos sinais das instanciacoes abaixo
-reg [DATA_WIDTH-1:0] compl2_in, compl2_in2, compl2_in3;
+reg [DATA_WIDTH-1:0] compl2_in;
 reg [DATA_WIDTH-1:0] add_in1, add_in2;
 reg [DATA_WIDTH-1:0] mul_in1, mul_in2;
 wire [DATA_WIDTH-1:0] compl2_out, compl2_out2, compl2_out3;
@@ -29,8 +29,6 @@ wire add_overflow, mul_overflow;
 
 // instanciacoes
 compl2 compl20(.data1(compl2_in), .out(compl2_out));
-compl2 compl21(.data1(compl2_in2), .out(compl2_out2));
-compl2 compl22(.data1(compl2_in3), .out(compl2_out3));
 add    add0(.data1(add_in1), .data2(add_in2), .out(add_out), .overflow(add_overflow));
 mul    mul0(.data1(mul_in1), .data2(mul_in2), .out(mul_out), .overflow(mul_overflow));
 
@@ -74,18 +72,7 @@ always @(*) begin
         endcase
     end else if (opcode == DIV) begin
         if (data2 != 0) begin
-            // verifique se os operandos sao negativos e force-os serem
-            // positivos
-            compl2_in = data1;
-            compl2_in2 = data2;
-            data1_aux = (data1[DATA_WIDTH-1] == 1 ? compl2_out : data1);
-            data2_aux = (data2[DATA_WIDTH-1] == 1 ? compl2_out2 : data2);
-            // execute a divisao e ajuste o sinal da mesma
-            out_aux = data1_aux / data2_aux;
-            if (xor_data12_sign == 1) begin
-                compl2_in3 = out_aux;
-                out = compl2_out3;
-            end
+            out = data1 / data2;
         end else begin
             // erro - divisao por zero
             rflags[0] = 1;

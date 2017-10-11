@@ -1,7 +1,7 @@
 module ula_testbench();
 
 // faz o include dos parameters das instrucoes
-`include "params.v"
+`include "params_proc.v"
 
 // contador de testes a serem feitos
 integer testes;

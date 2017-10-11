@@ -9,34 +9,34 @@ z2
 cModel Technology
 dC:/Users/Andre Luiz/Documents/Quartus/LAB3_TB
 vadd
-Z0 !s110 1507436421
+Z0 !s110 1507586977
 !i10b 1
-!s100 B5ZfJeZnGeiPn9O:i5m_f1
-Idif?:]gF>FcM>iX>PaMhK1
+!s100 YKEYiHKnf5LDSQS2o6NXV0
+IjaZ]GIY3A2LaoMlFLO5XI3
 Z1 VDg1SIo80bB@j0V0VzS_@n1
 Z2 dC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim
-w1507431872
+w1507547235
 8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v
 FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v
-Z3 Fparams.v
+Z3 Fparams_proc.v
 L0 1
 Z4 OV;L;10.4d;61
 r1
 !s85 0
 31
-Z5 !s108 1507436421.000000
-!s107 params.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v|
+Z5 !s108 1507586977.000000
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v|
 !i113 1
 Z6 o-work work
 vcompl2
 R0
 !i10b 1
-!s100 LB33YzgbUHhfiHXJmm5J]1
-IczRB@:?EN<I_QhKR6W1GS2
+!s100 9Ta1CAWnXizbmV<VVab8C2
+IFRMio7[`7WoHZ^Zm7mRO63
 R1
 R2
-w1507430804
+w1507547231
 8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/compl2.v
 FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/compl2.v
 R3
@@ -46,8 +46,50 @@ r1
 !s85 0
 31
 R5
-!s107 params.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/compl2.v|
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/compl2.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/compl2.v|
+!i113 1
+R6
+vcontroller
+!s110 1507654654
+!i10b 1
+!s100 lPRfamQkJ3mFon3`]=`DT1
+I75iRh6MhK2j1B7WVcPi@<0
+R1
+R2
+w1507654431
+8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/controller.v
+FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/controller.v
+R3
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1507654654.000000
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/controller.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/controller.v|
+!i113 1
+R6
+vctrl
+Z7 !s110 1507586978
+!i10b 1
+!s100 :V7_KZKUbdmD>T=13JRNA3
+In6NSElfL1goY4d]nQb7S;3
+R1
+R2
+w1507549816
+8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ctrl.v
+FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ctrl.v
+R3
+L0 1
+R4
+r1
+!s85 0
+31
+Z8 !s108 1507586978.000000
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ctrl.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ctrl.v|
 !i113 1
 R6
 vmul
@@ -60,7 +102,7 @@ R2
 w1507434051
 8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/mul.v
 FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/mul.v
-R3
+Fparams.v
 L0 1
 R4
 r1
@@ -71,16 +113,100 @@ r1
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/mul.v|
 !i113 1
 R6
+vpipeline2
+Z9 !s110 1507730624
+!i10b 1
+!s100 8>RA0<z[CINf;o]lWaQ<M0
+IN?0d7FnzPVY7^eac6SY9Q3
+R1
+R2
+w1507730387
+8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2.v
+FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2.v
+R3
+L0 1
+R4
+r1
+!s85 0
+31
+Z10 !s108 1507730624.000000
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2.v|
+!i113 1
+R6
+vpipeline2_testbench
+R9
+!i10b 1
+!s100 8]2:15SB01he1<6W25lNd3
+I0CGN1kKe8k92klUj:Xd>h0
+R1
+R2
+w1507730617
+8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2_testbench.v
+FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2_testbench.v
+R3
+L0 1
+R4
+r1
+!s85 0
+31
+R10
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2_testbench.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2_testbench.v|
+!i113 1
+R6
+vregs
+R7
+!i10b 1
+!s100 _;[_O9aDB@zhi3ZWjKmmo2
+I1<GfVA3mEWB3>Fca^NeYU2
+R1
+R2
+w1507566042
+8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs.v
+FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs.v
+R3
+L0 1
+R4
+r1
+!s85 0
+31
+R8
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs.v|
+!i113 1
+R6
+vregs_testbench
+R7
+!i10b 1
+!s100 P:Rc4aVSZdSjaDWG`HG2Q3
+IB?l=gB2_oCJPVi064CKWN0
+R1
+R2
+w1507570028
+8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs_testbench.v
+FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs_testbench.v
+R3
+L0 1
+R4
+r1
+!s85 0
+31
+R8
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs_testbench.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs_testbench.v|
+!i113 1
+R6
 vula
 R0
 !i10b 1
-!s100 =c3A40QNb:EM9N15NWoIk0
-I=2@_jU8fkFWKTEcZ?R:Ej2
+!s100 gmh^mdedmkRA@QVCX9FKN3
+IC6ndiHaoI[U>MAOEo0TCg2
 R1
 R2
-w1507436416
-8C:\Users\Andre Luiz\Documents\A - LABORATORIO INTEGRADO IV\modelsim\ula.v
-FC:\Users\Andre Luiz\Documents\A - LABORATORIO INTEGRADO IV\modelsim\ula.v
+w1507547247
+8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula.v
+FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula.v
 R3
 L0 1
 R4
@@ -88,18 +214,18 @@ r1
 !s85 0
 31
 R5
-!s107 params.v|C:\Users\Andre Luiz\Documents\A - LABORATORIO INTEGRADO IV\modelsim\ula.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\Andre Luiz\Documents\A - LABORATORIO INTEGRADO IV\modelsim\ula.v|
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula.v|
 !i113 1
 R6
 vula_testbench
 R0
 !i10b 1
-!s100 UjYb9hl3]lm]>iXFimBML1
-I71;<GSC:miRb^mcO3MG;11
+!s100 ]RXXZGWhbI?4eL4koE:gF0
+IRP@6><1Z_nnf@kg>4>[?A2
 R1
 R2
-w1507435719
+w1507547251
 8C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v
 FC:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v
 R3
@@ -109,7 +235,7 @@ r1
 !s85 0
 31
 R5
-!s107 params.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v|
+!s107 params_proc.v|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v|
 !i113 1
 R6

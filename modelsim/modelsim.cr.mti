@@ -1,9 +1,9 @@
-{C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v}
+{C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
--- Compiling module ula_testbench
+-- Compiling module regs
 
 Top level modules:
-	ula_testbench
+	regs
 
 } {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/add.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
@@ -19,11 +19,39 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 Top level modules:
 	compl2
 
-} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula.v} {1 {vlog -work work -stats=none {C:\Users\Andre Luiz\Documents\A - LABORATORIO INTEGRADO IV\modelsim\ula.v}
+} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula_testbench.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module ula_testbench
+
+Top level modules:
+	ula_testbench
+
+} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/ula.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 -- Compiling module ula
 
 Top level modules:
 	ula
+
+} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/pipeline2.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module pipeline2
+
+Top level modules:
+	pipeline2
+
+} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/regs_testbench.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module regs_testbench
+
+Top level modules:
+	regs_testbench
+
+} {} {}} {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/controller.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/A - LABORATORIO INTEGRADO IV/modelsim/controller.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module controller
+
+Top level modules:
+	controller
 
 } {} {}}

@@ -5,7 +5,7 @@ module add( data1,      // operando 1
 );
 
 // faz o include dos parameters das instrucoes
-`include "params.v"
+`include "params_proc.v"
 
 input [DATA_WIDTH-1:0] data1, data2;
 
