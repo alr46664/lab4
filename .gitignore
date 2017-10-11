@@ -11,3 +11,6 @@ __pycache__/
 
 # assembler bin
 assembler/*.bin
+
+# generated modelsim binaries
+modelsim/work

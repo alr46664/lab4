@@ -56,8 +56,8 @@ always begin
 end
 
 // gerandos os testes aqui
-always begin
-	#8;
+always @(negedge clk_in) begin
+	// gere casos de teste
 	testes = testes+1;
 	// DESCREVA OS CASOS DE TESTE ABAIXO
 	case(testes)
