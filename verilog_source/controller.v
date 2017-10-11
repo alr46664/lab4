@@ -1,6 +1,6 @@
 module controller(
 	opcode,   // opcode
-	ctrl,     // saida do controller
+	ctrl     // saida do controller
 );
 
 // faz o include dos parameters das instrucoes

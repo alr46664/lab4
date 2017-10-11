@@ -17,38 +17,36 @@ output reg [4:0] rflags;
 
 // variaveis auxiliares
 reg xor_data12_sign;
-reg [DATA_WIDTH-1:0] data1_aux, data2_aux, out_aux;
-
-// declaracao dos sinais das instanciacoes abaixo
-reg [DATA_WIDTH-1:0] compl2_in;
-reg [DATA_WIDTH-1:0] add_in1, add_in2;
-reg [DATA_WIDTH-1:0] mul_in1, mul_in2;
-wire [DATA_WIDTH-1:0] compl2_out, compl2_out2, compl2_out3;
-wire [DATA_WIDTH-1:0] add_out, mul_out;
-wire add_overflow, mul_overflow;
-
-// instanciacoes
-compl2 compl20(.data1(compl2_in), .out(compl2_out));
-add    add0(.data1(add_in1), .data2(add_in2), .out(add_out), .overflow(add_overflow));
-mul    mul0(.data1(mul_in1), .data2(mul_in2), .out(mul_out), .overflow(mul_overflow));
+reg signed [DATA_WIDTH-1:0] data2_aux;
 
 always @(*) begin
     // defina default das saidas
     out = 0;
     rflags = 0;
     xor_data12_sign = data1[DATA_WIDTH-1] ^ data2[DATA_WIDTH-1];
+    data2_aux = 0;
     // execute a operacao
-    if (opcode == ADD) begin
-        add_in1 = data1;
-        add_in2 = data2;
-        out = add_out;
-        rflags[4] = add_overflow;
-    end else if (opcode == SUB || opcode == CMP) begin
-        add_in1 = data1;
-        compl2_in = data2;
-        add_in2 = compl2_out;
-        out = add_out;
-        rflags[4] = add_overflow;
+    if (opcode == ADD || opcode == SUB || opcode == CMP) begin
+        // neste caso, verificaremos se SUB e faremos o complemento de 2
+        data2_aux = (opcode == SUB || opcode == CMP ? (~ data2) + 1 : data2);
+        out = data1 + data2_aux;
+        // iremos verificar overflow agora
+        case(out[DATA_WIDTH-1])
+        1'b0: begin
+            // neste caso, sabemos que houve overflow pois ambos data1
+            // e data2 sao negativos e a saida out deu positiva
+            if (data1[DATA_WIDTH-1] == 1 && data2_aux[DATA_WIDTH-1] == 1) begin
+                rflags[4] = 1;
+            end
+        end
+        default: begin
+            // neste caso, sabemos que houve overflow pois ambos data1
+            // e data2 sao positivos e a saida out deu negativa
+            if (data1[DATA_WIDTH-1] == 0 && data2_aux[DATA_WIDTH-1] == 0) begin
+                rflags[4] = 1;
+            end
+        end
+        endcase
     end else if (opcode == MUL) begin
         out = data1 * data2;
         // iremos verificar overflow agora
@@ -87,10 +85,10 @@ always @(*) begin
     end
 
     if (opcode == CMP) begin
-        if (add_out == 0) begin
+        if (out == 0) begin
             // neste caso data1 == data2 pois data1-data2 == 0
             rflags[2] = 1;
-        end else if (add_out[DATA_WIDTH-1] == 0) begin
+        end else if (out[DATA_WIDTH-1] == 0) begin
             // neste caso data1 > data2 pois data1-data2 > 0
             rflags[3] = 1;
         end else begin

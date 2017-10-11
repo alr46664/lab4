@@ -47,17 +47,7 @@ regs regs0(.clk(clk_neg), .en_write(reg_en), .addr_write(reg_addr), .data_write(
 // decodifique a instrucao e
 // gera clk_out indicando dados de saida estaveis
 always @(posedge clk_in or negedge RST) begin
-	if (RST) begin
-		opcode      <= instr[OPCODE_WIDTH-1:0];
-		instr_reg1  <= instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH];
-		instr_reg2  <= instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH];
-		imm         <= instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2];
-		// se (posedge clk_out), saidas estaveis
-		trigger_reset <= 1;
-		trigger_clk_out <= trigger_reset;
-		// faca pc_out = pc_in (nao mexemos no pc no pipeline 2)
-		pc_out <= pc_in;
-	end	else begin
+	if (!RST) begin
 		// rotina de reset
 		opcode      <= NOP;
 		instr_reg1  <= 0;
@@ -68,6 +58,16 @@ always @(posedge clk_in or negedge RST) begin
 		trigger_clk_out <= 0;
 		// reset - PC vai pro valor inicial
 		pc_out <= PC_INITIAL;
+	end	else begin
+		opcode      <= instr[OPCODE_WIDTH-1:0];
+		instr_reg1  <= instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH];
+		instr_reg2  <= instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH];
+		imm         <= instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2];
+		// se (posedge clk_out), saidas estaveis
+		trigger_reset <= 1;
+		trigger_clk_out <= trigger_reset;
+		// faca pc_out = pc_in (nao mexemos no pc no pipeline 2)
+		pc_out <= pc_in;
 	end
 end
 
