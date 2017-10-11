@@ -1,6 +1,7 @@
 module pipeline2(
 	clk_in,    // clock_in
 	RST,       // reset
+	pc_in,     // entrada - contador de programa
 	instr,     // instrucao
 	reg_addr,  // endereco do registrador a ser gravado
 	reg_data,  // dados a serem gravados no registrador reg_addr
@@ -8,6 +9,7 @@ module pipeline2(
     A,         // dados do registrador 1
     B,         // dados do registrador 2
     imm,       // immediato
+	pc_out,    // saida - contador de programa
     ctrl,      // saida - controller do processador,
     clk_out    // saida clk out
 );
@@ -17,15 +19,17 @@ module pipeline2(
 
 // declaracao de entrada / saida
 input clk_in, RST;
+input [PC_WIDTH-1:0] pc_in;
 input [INSTR_WIDTH-1:0] instr;
 input [REG_ADDR_WIDTH-1:0] reg_addr;
 input [DATA_WIDTH-1:0] reg_data;
 input reg_en;
 
 output reg signed [DATA_WIDTH-1:0] imm;
+output reg [PC_WIDTH-1:0] pc_out;
+output reg clk_out;
 output signed [DATA_WIDTH-1:0] A, B;
 output [CTRL_WIDTH-1:0] ctrl;
-output clk_out;
 
 // variaveis auxiliares
 reg [REG_ADDR_WIDTH-1:0] instr_reg1, instr_reg2;
@@ -51,6 +55,8 @@ always @(posedge clk_in or negedge RST) begin
 		// se (posedge clk_out), saidas estaveis
 		trigger_reset <= 1;
 		trigger_clk_out <= trigger_reset;
+		// faca pc_out = pc_in (nao mexemos no pc no pipeline 2)
+		pc_out <= pc_in;
 	end	else begin
 		// rotina de reset
 		opcode      <= NOP;
@@ -60,11 +66,15 @@ always @(posedge clk_in or negedge RST) begin
 		// reset ocorreu, sem saidas a processar
 		trigger_reset   <= 0;
 		trigger_clk_out <= 0;
+		// reset - PC vai pro valor inicial
+		pc_out <= PC_INITIAL;
 	end
 end
 
 // ative clk_out somente se saidas estaveis (trigger == 1)
-assign clk_out = (trigger_clk_out ? clk_in : 0);
+always @(*) begin
+	clk_out <= (trigger_clk_out ? clk_in : 0);
+end
 
 // salva os dados reg_data no registrador reg_addr,
 // faz leitura dos registradores,

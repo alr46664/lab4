@@ -11,12 +11,14 @@ integer testes;
 
 // declaracao das input e output
 reg clk_in, RST;
+reg [PC_WIDTH-1:0] pc_in;
 reg [INSTR_WIDTH-1:0] instr;
 reg [REG_ADDR_WIDTH-1:0] reg_addr;
 reg [DATA_WIDTH-1:0] reg_data;
 reg reg_en;
 
 wire signed [DATA_WIDTH-1:0] A, B, imm;
+wire [PC_WIDTH-1:0] pc_out;
 wire [CTRL_WIDTH-1:0] ctrl;
 wire clk_out;
 
@@ -24,6 +26,7 @@ wire clk_out;
 pipeline2 pipeline20(
 	.clk_in(clk_in),
 	.RST(RST),
+	.pc_in(pc_in),
 	.instr(instr),
 	.reg_addr(reg_addr),
 	.reg_data(reg_data),
@@ -32,6 +35,7 @@ pipeline2 pipeline20(
     .B(B),
     .imm(imm),
     .ctrl(ctrl),
+	.pc_out(pc_out),
     .clk_out(clk_out));
 
 
@@ -66,6 +70,7 @@ always @(negedge clk_in) begin
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 31;
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 0;
 		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 85;
+		pc_in = 758;
 		reg_addr = 8;
 		reg_data = 5;
 		reg_en = 0;
@@ -75,6 +80,7 @@ always @(negedge clk_in) begin
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 3;
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 17;
 		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 105;
+		pc_in = 1024;
 		reg_addr = 0;
 		reg_data = 5;
 		reg_en = 1;
@@ -84,6 +90,7 @@ always @(negedge clk_in) begin
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 0;
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 3;
 		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 32767;
+		pc_in = 8056;
 		reg_addr = 2;
 		reg_data = 4;
 		reg_en = 0;
@@ -93,6 +100,7 @@ always @(negedge clk_in) begin
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 0;
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 3;
 		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = -32768;
+		pc_in = 0;
 		reg_addr = 3;
 		reg_data = 9;
 		reg_en = 1;
@@ -102,6 +110,7 @@ always @(negedge clk_in) begin
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 2;
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 3;
 		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 0;
+		pc_in = 64000;
 		reg_addr = 2;
 		reg_data = 16;
 		reg_en = 1;
@@ -111,6 +120,7 @@ always @(negedge clk_in) begin
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 2;
 		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 0;
 		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 145;
+		pc_in = 65535;
 		reg_addr = 2;
 		reg_data = 25;
 		reg_en = 0;
@@ -131,11 +141,13 @@ always @(posedge clk_in) begin
 			$display("\t A:    %6d", A);
 		    $display("\t IMM:  %6d ", imm);
 		    $display("\t CTRL: %b  ", ctrl);
+			$display("\t PC_OUT: %6d  ", pc_out);
 		    $display(" ");
 		end
 		if (testes < N_TESTES) begin
 			// ENTRADAS (estaveis)
 			$display("  Teste # %2d  =>  ", testes);
+			$display("\t PC_IN: %6d  ", pc_in);
 			$display("\t REG_WRITE  -  EN: %b  -  ADDR: %3d  -  DATA: %6d  ", reg_en, reg_addr, reg_data);
 		    $display("\t INSTR (%2d): %b  ", INSTR_WIDTH, instr);
 		    $display("\t    IMM    (%2d): %b (%6d)", (INSTR_WIDTH)-(OPCODE_WIDTH+REG_ADDR_WIDTH*2), instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2], instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2]);
