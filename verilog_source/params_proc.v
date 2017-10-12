@@ -2,7 +2,8 @@
 parameter PC_INITIAL = 0;   // endereco que comeca a execucao do programa
 
 // definicao dos tamanhos das palavras
-parameter DATA_WIDTH      = 16,  // TAMANHO EM BITS DOS DADOS
+parameter MEM_WIDTH       = 16,  // TAMANHO EM BITS MEMORIA
+          DATA_WIDTH      = 16,  // TAMANHO EM BITS DOS DADOS
           REG_ADDR_WIDTH  = 5,   // TAMANHO EM BITS DOS ENDERECOS DOS REGISTRADORES
           OPCODE_WIDTH    = 6,   // TAMANHO EM BITS DOS OPCODES DO PROCESSADOR
           INSTR_WIDTH     = OPCODE_WIDTH + 2*REG_ADDR_WIDTH + DATA_WIDTH,  // TAMANHO EM BITS DAS INSTRUCOES DO PROCESSADOR
