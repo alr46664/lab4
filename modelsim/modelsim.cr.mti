@@ -1,11 +1,4 @@
-{C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs_testbench.v}
-Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
--- Compiling module regs_testbench
-
-Top level modules:
-	regs_testbench
-
-} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline2.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline2.v}
+{C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline2.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline2.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 -- Compiling module pipeline2
 
@@ -18,6 +11,13 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 
 Top level modules:
 	controller
+
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs_testbench.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module regs_testbench
+
+Top level modules:
+	regs_testbench
 
 } {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
@@ -40,22 +40,21 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 Top level modules:
 	ula
 
-} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v} {0 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v}
-Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
--- Compiling module mem_dport_sclk
-** Error: C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v(21): (vlog-2730) Undefined variable: 'MEM_WIDTH'.
-
-** Error: C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v(9): Identifier must be declared with a port mode: addr_a.
-** Error: C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v(10): Identifier must be declared with a port mode: addr_b.
-
-} {4.0 5.0 6.0 8.0} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem.v} {0 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem.v}
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 -- Compiling module mem
-** Error: C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem.v(14): (vlog-2730) Undefined variable: 'MEM_WIDTH'.
 
-** Error: C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem.v(4): Identifier must be declared with a port mode: addr.
+Top level modules:
+	mem
 
-} {4.0 5.0 6.0 7.0} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline2_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline2_testbench.v}
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module mem_dport_sclk
+
+Top level modules:
+	mem_dport_sclk
+
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline2_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline2_testbench.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 -- Compiling module pipeline2_testbench
 

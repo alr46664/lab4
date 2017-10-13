@@ -26,6 +26,11 @@ always @(posedge clk) begin
 	// verifique se precisamos fazer uma gravacao
 	if (en_write) begin
 		registers[addr_write] <= data_write;
+	end
+end
+
+always @(*) begin
+	if (en_write) begin
 		// temos de tratar a leitura para evitar corrupcao de dados
 		data_read1 <= (addr_write == addr_read1 ? data_write : registers[addr_read1]);
 		data_read2 <= (addr_write == addr_read2 ? data_write : registers[addr_read2]);

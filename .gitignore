@@ -14,6 +14,7 @@ assembler/*.bin
 
 # generated modelsim binaries
 modelsim/work
+modelsim/wlft*
 
 # ignore generated quartus binaries
 quartus/assembler
@@ -21,5 +22,5 @@ quartus/db
 quartus/incremental_db
 quartus/simulation
 quartus/output_files
-modelsil/*.wlf
+modelsim/*.wlf
 *.bak
