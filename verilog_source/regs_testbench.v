@@ -4,7 +4,7 @@ module regs_testbench();
 `include "params_proc.v"
 
 // indica o numero de testes a serem feitos
-parameter N_TESTES = 6;
+parameter N_TESTES = 9;
 
 // contador de testes a serem feitos
 integer testes;
@@ -12,12 +12,20 @@ integer testes;
 // declaracao input / output
 reg clk, en_write;
 reg [REG_ADDR_WIDTH-1:0] addr_write, addr_read1, addr_read2;
-reg [DATA_WIDTH-1:0] data_write;
+reg signed [DATA_WIDTH-1:0] data_write;
 
-wire [DATA_WIDTH-1:0] data_read1, data_read2;
+wire signed [DATA_WIDTH-1:0] data_read1, data_read2;
 
 // criacao das instancias
-regs regs0(.clk(clk), .en_write(en_write), .addr_write(addr_write), .data_write(data_write), .addr_read1(addr_read1), .addr_read2(addr_read2), .data_read1(data_read1), .data_read2(data_read2));
+regs regs0(
+	.clk(clk),
+	.en_write(en_write),
+	.data_write(data_write),
+	.addr_write(addr_write),
+	.addr_read1(addr_read1),
+	.addr_read2(addr_read2),
+	.data_read1(data_read1),
+	.data_read2(data_read2));
 
 // inicializando testes em 0
 initial begin
@@ -47,39 +55,60 @@ always begin
 		addr_read2 = 0;
 	end
 	2: begin
-		en_write = 1;
-		addr_write = 1;
-		data_write = 12;
+		en_write = 0;
+		addr_write = 7;
+		data_write = 65;
 		addr_read1 = 0;
 		addr_read2 = 1;
 	end
 	3: begin
-		en_write = 0;
-		addr_write = 2;
-		data_write = 18;
+		en_write = 1;
+		addr_write = 8;
+		data_write = 12;
 		addr_read1 = 0;
 		addr_read2 = 1;
 	end
 	4: begin
+		en_write = 0;
+		addr_write = 7;
+		data_write = 18;
+		addr_read1 = 8;
+		addr_read2 = 1;
+	end
+	5: begin
 		en_write = 1;
 		addr_write = 1;
 		data_write = 16;
 		addr_read1 = 0;
 		addr_read2 = 1;
 	end
-	5: begin
+	6: begin
 		en_write = 1;
 		addr_write = 2;
 		data_write = 24;
 		addr_read1 = 0;
 		addr_read2 = 1;
 	end
-	6: begin
+	7: begin
 		en_write = 0;
 		addr_write = 2;
 		data_write = 29;
 		addr_read1 = 1;
 		addr_read2 = 2;
+	end
+	8: begin
+		en_write = 1;
+		addr_write = 15;
+		data_write = 20;
+		addr_read1 = 1;
+		addr_read2 = 2;
+	end
+	9: begin
+		en_write = 0;
+		addr_write = 21;
+		data_write = 25400;
+		addr_read1 = 15;
+		addr_read2 = 0;
 	end
 	default: begin
 		// nao faca nada de proposito
