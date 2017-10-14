@@ -56,44 +56,63 @@ ula ula0(.opcode(ula_opcode),
 	.data1(ula_data1), .data2(ula_data2),
 	.out(ula_out), .rflags(rflags));
 
+// armazene o rflags
+always @(negedge clk_in or negedge RST) begin
+	if (!RST) begin
+		rflags_last  <= 0;
+	end else begin
+		rflags_last <= rflags;
+	end
+end
+
+// repasse o control
+always @(posedge clk_in) begin
+    ctrl_out    <= ctrl_in;
+end
+
 // execute a instrucao
 always @(posedge clk_in or negedge RST) begin
-    // estabelesca valores default dos sinais
-	pc_out      <= PC_INITIAL;
-	reg_addr    <= A_addr;
-	ctrl_out    <= ctrl_in;
-	pc_chg 	    <= 0;
-	// valores default dos regs internos
-    ula_to_data    <= 1;
-    data_default   <= 0;
-    addr_default   <= 0;
-    ula_opcode     <= NOP;
-    ula_data1      <= 0;
-    ula_data2      <= 0;
 	if (!RST) begin
 		// rotina de reset
-		rflags_last  <= 0;
+		pc_out      <= PC_INITIAL;
+		reg_addr    <= 0;
+		pc_chg 	    <= 0;
+		// valores default dos regs internos
+		ula_to_data    <= 0;
+		data_default   <= 0;
+		addr_default   <= 0;
+		ula_opcode     <= NOP;
+		ula_data1      <= 0;
+		ula_data2      <= 0;
         // saidas instaveis
-        done         <= 0;
+        done           <= 0;
 	end	else begin
-		rflags_last <= rflags;
+        pc_out      <= pc_in;
+        reg_addr    <= A_addr;
+        pc_chg      <= 0;
+        // valores default dos regs internos
+        ula_to_data    <= 1;
+        data_default   <= 0;
+        addr_default   <= 0;
+        ula_opcode     <= NOP;
+        ula_data1      <= 0;
+        ula_data2      <= 0;
 		// saidas estaveis (== 1)
         done        <= 1;
 		case(ctrl_in)
 		LW: begin
-    		// armazene no registrador A
-    		reg_addr       <= A_addr;
-    		// o conteudo presente na memoria de dados
+    		// pegue o conteudo presente no endereco de
+    		// memoria B + IMM
     		ula_to_data    <= 0;
-			// do endereco B + imm
 			ula_opcode     <= ADD;
     		ula_data1      <= B_imm;
     		ula_data2      <= 0;
+    		// e armazene no registrador A
+    		reg_addr       <= A_addr;
 		end
 		SW: begin
-    		// armazene na memoria
+    		// armazene na memoria no endereco B + imm
     		ula_to_data    <= 0;
-			// no endereco B + imm
 			ula_opcode     <= ADD;
     		ula_data1      <= B_imm;
     		ula_data2      <= 0;
@@ -101,7 +120,7 @@ always @(posedge clk_in or negedge RST) begin
     		data_default   <= A;
 		end
 		JR: begin
-			// devie o pc para o endereco A
+			// desvie o pc para o endereco A
 			pc_chg   <= 1;
 			pc_out   <= A;
 		end
@@ -121,7 +140,7 @@ always @(posedge clk_in or negedge RST) begin
 		end
 		CALL: begin
 			// grave no registrador de retorno de funcao
-    		reg_addr       <= REG_FUNC_RET;
+    		reg_addr     <= REG_FUNC_RET;
     		// o valor do pc atual
     		ula_to_data  <= 1;
 			ula_opcode   <= ADD;

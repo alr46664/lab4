@@ -35,5 +35,11 @@ end
 assign data_read1 = (addr_write == addr_read1 && en_write ? data_write : ram[addr_read1]);
 assign data_read2 = (addr_write == addr_read2 && en_write ? data_write : ram[addr_read2]);
 
+// inicialize os registradores 0 e 1
+initial begin
+	ram[0] <= 0;
+	ram[1] <= 1;
+end
+
 
 endmodule

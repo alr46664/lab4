@@ -23,6 +23,7 @@ always @(*) begin
     // defina default das saidas
     out = data1;
     rflags = 0;
+	 data2_aux = 0;
     xor_data12_sign = data1[DATA_WIDTH-1] ^ data2[DATA_WIDTH-1];
     // execute a operacao
     if (opcode == ADD || opcode == SUB || opcode == CMP) begin

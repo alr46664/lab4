@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE115F29I7
-set_global_assignment -name TOP_LEVEL_ENTITY regs
+set_global_assignment -name TOP_LEVEL_ENTITY pipeline3
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:39:56  OCTOBER 11, 2017"
 set_global_assignment -name LAST_QUARTUS_VERSION 16.0.0
@@ -55,6 +55,7 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name VERILOG_FILE ../verilog_source/pipeline3.v
 set_global_assignment -name VERILOG_FILE ../verilog_source/mem_dport_sclk.v
 set_global_assignment -name VERILOG_FILE ../verilog_source/mem.v
 set_global_assignment -name VERILOG_FILE ../verilog_source/ula.v

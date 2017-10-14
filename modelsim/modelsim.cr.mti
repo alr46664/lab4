@@ -19,12 +19,26 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 Top level modules:
 	pipeline2
 
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/ula_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/ula_testbench.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module ula_testbench
+
+Top level modules:
+	ula_testbench
+
 } {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 -- Compiling module regs
 
 Top level modules:
 	regs
+
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/ula.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/ula.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module ula
+
+Top level modules:
+	ula
 
 } {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_dport_sclk.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
