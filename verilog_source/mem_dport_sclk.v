@@ -23,7 +23,7 @@ input [MEM_WIDTH-1:0] addr_a, addr_b;
 output reg [DATA_WIDTH-1:0] out_a, out_b;
 
 // declaracao da memoria RAM
-reg [DATA_WIDTH-1:0] ram [0:MEM_WIDTH-1];
+reg [DATA_WIDTH-1:0] ram [0:(1<<MEM_WIDTH)-1];
 
 // Port A
 always @ (posedge clk) begin

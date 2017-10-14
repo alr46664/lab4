@@ -4,7 +4,7 @@ module regs_testbench();
 `include "params_proc.v"
 
 // indica o numero de testes a serem feitos
-parameter N_TESTES = 9;
+parameter N_TESTES = 11;
 
 // contador de testes a serem feitos
 integer testes;
@@ -64,7 +64,7 @@ always begin
 	3: begin
 		en_write = 1;
 		addr_write = 8;
-		data_write = 12;
+		data_write = 11;
 		addr_read1 = 0;
 		addr_read2 = 1;
 	end
@@ -110,6 +110,20 @@ always begin
 		addr_read1 = 15;
 		addr_read2 = 0;
 	end
+	10: begin
+		en_write = 1;
+		addr_write = 31;
+		data_write = 2000;
+		addr_read1 = 15;
+		addr_read2 = 0;
+	end
+	11: begin
+		en_write = 0;
+		addr_write = 20;
+		data_write = 200;
+		addr_read1 = 31;
+		addr_read2 = 0;
+	end
 	default: begin
 		// nao faca nada de proposito
 	end
@@ -122,18 +136,13 @@ always @(posedge clk) begin
 	    // aqui aparecem os resultados das entradas
 		$display("  Teste # %2d  =>  ", testes);
 		$display("\t WRITE  -  EN: %b  -  ADDR: %3d  -  DATA: %6d  ", en_write, addr_write, data_write);
-	    $display("\t READ_1  -  ADDR: %3d  ", addr_read1);
-	    $display("\t READ_2  -  ADDR: %3d  ", addr_read2);
-	end
-end
-always @(negedge clk) begin
-	if (testes > 0 && testes  <= N_TESTES+1) begin
-	    // aqui aparecem os resultados das saidas
-	    // (estabilizadas em 1/2 clk)
-	    $display("\t READ_1  -  DATA: %6d  ", data_read1);
-	    $display("\t READ_2  -  DATA: %6d  ", data_read2);
+	    $display("\t READ_1\n\t   ADDR: %3d  ", addr_read1);
+	    $display("\t   DATA: %6d  ", data_read1);
+	    $display("\t READ_2\n\t   ADDR: %3d  ", addr_read2);
+	    $display("\t   DATA: %6d  ", data_read2);
 	    $display(" ");
 	end
 end
+
 
 endmodule

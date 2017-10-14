@@ -236,6 +236,16 @@ always @(testes) begin
 		data2 = 6;
 		opcode = CMP;
 	end
+	31: begin
+		data1 = 32767;
+		data2 = -1;
+		opcode = CMP;
+	end
+	32: begin
+		data1 = 1;
+		data2 = -32768;
+		opcode = CMP;
+	end
 	default: begin
 		// nao faca nada de proposito
 	end

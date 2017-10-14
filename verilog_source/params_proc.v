@@ -1,3 +1,6 @@
+// DEFINICOES DA CHAMADA DE FUNCAO
+parameter REG_FUNC_RET = 31;  // endereco do reg que armazena o endereco de retorno de um call
+
 // definicoes do PC
 parameter PC_INITIAL = 0;   // endereco que comeca a execucao do programa
 
@@ -8,7 +11,8 @@ parameter MEM_WIDTH       = 16,  // TAMANHO EM BITS MEMORIA
           OPCODE_WIDTH    = 6,   // TAMANHO EM BITS DOS OPCODES DO PROCESSADOR
           INSTR_WIDTH     = OPCODE_WIDTH + 2*REG_ADDR_WIDTH + DATA_WIDTH,  // TAMANHO EM BITS DAS INSTRUCOES DO PROCESSADOR
           CTRL_WIDTH      = 6,   // TAMANHO EM BITS DO CONTROLLER DO PROCESSADOR
-          PC_WIDTH        = 16;  // TAMANHO EM BITS DO CONTADOR DE PROGRAMA
+          PC_WIDTH        = 16,  // TAMANHO EM BITS DO CONTADOR DE PROGRAMA
+          RFLAGS_WIDTH    = 5;   // TAMANHO DO RFLAGS
 
 // definicao das instrucoes
 parameter LW    = 6'b000000,

@@ -17,7 +17,7 @@ input [DATA_WIDTH-1:0] data_in;
 output reg [DATA_WIDTH-1:0] data_out;
 
 // declaracao da memoria
-reg [DATA_WIDTH-1:0] mem [0:MEM_WIDTH-1];
+reg [DATA_WIDTH-1:0] mem [0:(1<<MEM_WIDTH)-1];
 
 always @(posedge clk) begin
 	if (we) begin

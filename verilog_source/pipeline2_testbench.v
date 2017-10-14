@@ -4,7 +4,7 @@ module pipeline2_testbench();
 `include "params_proc.v"
 
 // indica o numero de testes a serem feitos
-parameter N_TESTES = 6;
+parameter N_TESTES = 16;
 
 // contador de testes a serem feitos
 integer testes;
@@ -18,6 +18,7 @@ reg [DATA_WIDTH-1:0] reg_data;
 reg reg_en;
 
 wire signed [DATA_WIDTH-1:0] A, B, imm;
+wire [REG_ADDR_WIDTH-1:0] A_addr, B_addr;
 wire [PC_WIDTH-1:0] pc_out;
 wire [CTRL_WIDTH-1:0] ctrl;
 wire done;
@@ -31,6 +32,8 @@ pipeline2 pipeline20(
 	.reg_addr(reg_addr),
 	.reg_data(reg_data),
 	.reg_en(reg_en),
+    .A_addr(A_addr),
+    .B_addr(B_addr),
     .A(A),
     .B(B),
     .imm(imm),
@@ -123,6 +126,106 @@ always @(negedge clk_in) begin
 		pc_in = 65535;
 		reg_addr = 2;
 		reg_data = 25;
+		reg_en = 0;
+	end
+	6: begin
+		instr[OPCODE_WIDTH-1:0] = AND;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 2;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 0;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 145;
+		pc_in = 4040;
+		reg_addr = 1;
+		reg_data = 305;
+		reg_en = 0;
+	end
+	7: begin
+		instr[OPCODE_WIDTH-1:0] = OR;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 3;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 1;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 1851;
+		pc_in = 4654;
+		reg_addr = 6;
+		reg_data = 3415;
+		reg_en = 0;
+	end
+	8: begin
+		instr[OPCODE_WIDTH-1:0] = NOT;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 0;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 6;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 1601;
+		pc_in = 7584;
+		reg_addr = 9;
+		reg_data = 30115;
+		reg_en = 0;
+	end
+	9: begin
+		instr[OPCODE_WIDTH-1:0] = CMP;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 5;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 10;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 18546;
+		pc_in = 45012;
+		reg_addr = 15;
+		reg_data = 40254;
+		reg_en = 0;
+	end
+	10: begin
+		instr[OPCODE_WIDTH-1:0] = JR;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 31;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 28;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 14521;
+		pc_in = 32415;
+		reg_addr = 17;
+		reg_data = 35454;
+		reg_en = 0;
+	end
+	11: begin
+		instr[OPCODE_WIDTH-1:0] = JPC;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 12;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 13;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 24821;
+		pc_in = 52675;
+		reg_addr = 30;
+		reg_data = 45014;
+		reg_en = 0;
+	end
+	12: begin
+		instr[OPCODE_WIDTH-1:0] = BRFL;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 14;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 22;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 31052;
+		pc_in = 42890;
+		reg_addr = 26;
+		reg_data = 17084;
+		reg_en = 0;
+	end
+	13: begin
+		instr[OPCODE_WIDTH-1:0] = CALL;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 23;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 29;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 37824;
+		pc_in = 2090;
+		reg_addr = 31;
+		reg_data = 20000;
+		reg_en = 1;
+	end
+	14: begin
+		instr[OPCODE_WIDTH-1:0] = RET;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 27;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 4;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 358;
+		pc_in = 896;
+		reg_addr = 10;
+		reg_data = 25870;
+		reg_en = 0;
+	end
+	15: begin
+		instr[OPCODE_WIDTH-1:0] = NOP;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 11;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 16;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 4751;
+		pc_in = 6521;
+		reg_addr = 17;
+		reg_data = 11251;
 		reg_en = 0;
 	end
 	default: begin

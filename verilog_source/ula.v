@@ -13,7 +13,7 @@ input [OPCODE_WIDTH-1:0] opcode;
 input signed [DATA_WIDTH-1:0] data1, data2;
 
 output reg signed [DATA_WIDTH-1:0] out;
-output reg [4:0] rflags;
+output reg [RFLAGS_WIDTH-1:0] rflags;
 
 // variaveis auxiliares
 reg xor_data12_sign;
@@ -21,10 +21,8 @@ reg signed [DATA_WIDTH-1:0] data2_aux;
 
 always @(*) begin
     // defina default das saidas
-    out = 0;
+    out = data1;
     rflags = 0;
-    xor_data12_sign = data1[DATA_WIDTH-1] ^ data2[DATA_WIDTH-1];
-    data2_aux = 0;
     // execute a operacao
     if (opcode == ADD || opcode == SUB || opcode == CMP) begin
         // neste caso, verificaremos se SUB e faremos o complemento de 2
@@ -48,6 +46,7 @@ always @(*) begin
         end
         endcase
     end else if (opcode == MUL) begin
+        xor_data12_sign = data1[DATA_WIDTH-1] ^ data2[DATA_WIDTH-1];
         out = data1 * data2;
         // iremos verificar overflow agora
         case(out[DATA_WIDTH-1])
