@@ -1,6 +1,6 @@
 //Bloco TOP
 
-module processador(
+module top(
 	// input [31:0] instr, 
 	output [31:0] out,
 	output [31:0] ans,
