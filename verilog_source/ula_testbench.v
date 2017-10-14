@@ -53,8 +53,11 @@ task print_results;
 		NOT: begin
 	    	$write("! %6d = %6d", data1, out);
 		end
-		default: begin
+		CMP: begin
 	    	$write("%6d cmp %6d = %6d", data1, data2, out);
+		end
+		default: begin
+	    	$write("%6d ?? %6d = %6d", data1, data2, out);
 		end
 	    endcase
 	    $write("  |  RFlags (descricao) = ");
@@ -227,8 +230,8 @@ always @(testes) begin
 		opcode = CMP;
 	end
 	29: begin
-		data1 = 5;
-		data2 = 5;
+		data1 = -32768;
+		data2 = -32768;
 		opcode = CMP;
 	end
 	30: begin
@@ -242,8 +245,18 @@ always @(testes) begin
 		opcode = CMP;
 	end
 	32: begin
+		data1 = -32768;
+		data2 = 32767;
+		opcode = CMP;
+	end
+	33: begin
 		data1 = 1;
 		data2 = -32768;
+		opcode = CMP;
+	end
+	34: begin
+		data1 = 32767;
+		data2 = 32767;
 		opcode = CMP;
 	end
 	default: begin

@@ -23,6 +23,7 @@ always @(*) begin
     // defina default das saidas
     out = data1;
     rflags = 0;
+    xor_data12_sign = data1[DATA_WIDTH-1] ^ data2[DATA_WIDTH-1];
     // execute a operacao
     if (opcode == ADD || opcode == SUB || opcode == CMP) begin
         // neste caso, verificaremos se SUB e faremos o complemento de 2
@@ -46,7 +47,6 @@ always @(*) begin
         end
         endcase
     end else if (opcode == MUL) begin
-        xor_data12_sign = data1[DATA_WIDTH-1] ^ data2[DATA_WIDTH-1];
         out = data1 * data2;
         // iremos verificar overflow agora
         case(out[DATA_WIDTH-1])
@@ -86,13 +86,25 @@ always @(*) begin
     if (opcode == CMP) begin
         if (out == 0) begin
             // neste caso data1 == data2 pois data1-data2 == 0
-            rflags[2] = 1;
-        end else if (out[DATA_WIDTH-1] == 0) begin
-            // neste caso data1 > data2 pois data1-data2 > 0
-            rflags[3] = 1;
+            rflags = 5'b00100;
+        end else if (xor_data12_sign) begin
+            // os dados possuem sinais diferentes
+            if (data1[DATA_WIDTH-1]) begin
+                // neste caso data1 < data2 pois data1 < 0 e data2 >= 0
+                rflags = 5'b00010;
+            end else begin
+                // neste caso data1 > data2 pois data1 >= 0 e data2 < 0
+                rflags = 5'b01000;
+            end
         end else begin
-            // neste caso data1 < data2 pois data1-data2 > 0
-            rflags[1] = 1;
+            // os dados possuem mesmo sinal
+            if (out[DATA_WIDTH-1]) begin
+                // neste caso data1 < data2 pois data1-data2 < 0
+                rflags = 5'b00010;
+            end else begin
+                // neste caso data1 > data2 pois data1-data2 > 0
+                rflags = 5'b01000;
+            end
         end
     end
 end
