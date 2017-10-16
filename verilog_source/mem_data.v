@@ -1,4 +1,4 @@
-module mem(
+module mem_data(
 	clk,       // clock_in
 	we,         // write enable
 	addr,      // endereco da memoria

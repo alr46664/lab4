@@ -3,18 +3,17 @@ module pipeline1_testbench();
 // faz o include dos parameters das instrucoes
 `include "params_proc.v"
 
-// indica o numero de testes a serem feitos
-parameter N_TESTES = 11;
+// numero de testes a serem feitos
+parameter N_TESTES = 8;
 
 // contador de testes a serem feitos
 integer testes;
 
 // declaracao input / output
-reg clk_in, RST;
+reg clk_in, RST, pc_chg;
 reg [PC_WIDTH-1:0] pc_in;
 
 wire [INSTR_WIDTH-1:0] instr;
-reg [INSTR_WIDTH-1:0] instrmem;
 wire [PC_WIDTH-1:0] pc_out;
 wire done;
 
@@ -24,8 +23,9 @@ wire done;
 pipeline1 pipeline10(
 	.clk_in(clk_in),
 	.RST(RST),
+	.pc_chg(pc_chg),
 	.pc_in(pc_in),
-	.instr(instr),	
+	.instr(instr),
 	.pc_out(pc_out),
 	.done(done));
 
@@ -56,54 +56,37 @@ always @(negedge clk_in) begin
 	testes = testes+1;
 	// DESCREVA OS CASOS DE TESTE ABAIXO
 	case(testes)
-	0: begin		
-		pc_in = 0;		
+	0: begin
+	    pc_chg = 0;
+	    pc_in  = 5;
 	end
-	1: begin				
-		pc_in = pc_in +4;		
+	1: begin
+	    pc_chg = 0;
+	    pc_in  = 15;
 	end
-	2: begin		
-		pc_in = pc_in +4;		
+	2: begin
+	    pc_chg = 1;
+	    pc_in  = 20;
 	end
-	3: begin		
-		pc_in = pc_in +4;		
+	3: begin
+		pc_chg = 1;
+		pc_in  = 1;
 	end
-	4: begin		
-		pc_in = pc_in +4;		
+	4: begin
+		pc_chg = 0;
+		pc_in  = 5;
 	end
-	5: begin		
-		pc_in = pc_in +4;			
+	5: begin
+		pc_chg = 0;
+		pc_in  = 5;
 	end
-	6: begin		
-		pc_in = pc_in +4;		
+	6: begin
+		pc_chg = 0;
+		pc_in  = 5;
 	end
-	7: begin		
-		pc_in = pc_in +4;		
-	end
-	8: begin		
-		pc_in = pc_in +4;		
-	end
-	9: begin		
-		pc_in = pc_in +4;		
-	end
-	10: begin		
-		pc_in = pc_in +4;		
-	end
-	11: begin		
-		pc_in = pc_in +4;			
-	end
-	12: begin		
-		pc_in = pc_in +4;		
-	end
-	13: begin
-		pc_in = pc_in +4;		
-			
-	end
-	14: begin
-		pc_in = pc_in +4;			
-	end
-	15: begin		
-		pc_in = pc_in +4;		
+	7: begin
+		pc_chg = 0;
+		pc_in  = 5;
 	end
 	default: begin
 		// nao faca nada de proposito
@@ -117,33 +100,16 @@ always @(posedge clk_in) begin
 	if (testes >= 0 && testes  <= N_TESTES) begin
 		if (testes > 0) begin
 			// SAIDAS (estaveis)
-			$display("\t INSTR (%2d): %b  ", INSTR_WIDTH, instr);
+			$display("\t INSTR (%3d): %b  ", INSTR_WIDTH, instr);
 			$display("\t PC_OUT: %6d  ", pc_out);
-			case(instr[OPCODE_WIDTH-1:0])
-			LW:   $display("LW)");
-			SW:   $display("SW)");
-			ADD:  $display("ADD)");
-			SUB:  $display("SUB)");
-			MUL:  $display("MUL)");
-			DIV:  $display("DIV)");
-			AND:  $display("AND)");
-			OR:   $display("OR)");
-			NOT:  $display("NOT)");
-			CMP:  $display("CMP)");
-			JR:   $display("JR)");
-			JPC:  $display("JPC)");
-			BRFL: $display("BRFL)");
-			CALL: $display("CALL)");
-			RET:  $display("RET)");
-			NOP:  $display("NOP)");		    	
-			endcase
-			$display(" ");	
+			$display(" ");
 		end
 		if (testes < N_TESTES) begin
 			// ENTRADAS (estaveis)
 			$display("  Teste # %2d  =>  ", testes);
-			$display("\t PC_IN: %6d  ", pc_in);		    
-		    
+			$display("\t PC_CHG: %b  ",  pc_chg);
+			$display("\t PC_IN:  %6d  ", pc_in);
+
 	    end
 	end
 end
