@@ -9,9 +9,6 @@ __pycache__/
 # sublime workspace
 *.sublime-workspace
 
-# assembler bin
-assembler/*.bin
-
 # generated modelsim binaries
 modelsim/work
 modelsim/wlft*
