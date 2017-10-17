@@ -1,17 +1,26 @@
 //Bloco TOP
 
 module top(
-	// input [31:0] instr, 
-	output [31:0] out,
-	output [31:0] ans,
-	input reset,
-	input clk);
-	
-	wire count;
-	wire [4:0] ALUOp;
-	wire [3:0] op;
-	
-	// sinais de sontrole
-	wire RegDst, ALUSrc, Mem2Reg, MemRead, MemWrite, PCSrc;
+    clk,
+    RST
+    );
+
+// faz o include dos parameters das instrucoes
+`include "params_proc.v"
+
+// input / output do top
+input clk;
+input RST;
+
+// instacias
+
+// pipeline todo esta aqui
+pipeline pipe(
+	.clk(clk), .RST(RST)
+	);
+
+// TODO implementar o sistema de interrupcao
+// em uma instancia aqui em baixo
+
 
 endmodule

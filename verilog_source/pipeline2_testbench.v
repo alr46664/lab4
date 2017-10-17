@@ -4,7 +4,7 @@ module pipeline2_testbench();
 `include "params_proc.v"
 
 // indica o numero de testes a serem feitos
-parameter N_TESTES = 16;
+parameter N_TESTES = 18;
 
 // contador de testes a serem feitos
 integer testes;
@@ -228,6 +228,26 @@ always @(negedge clk_in) begin
 		reg_data = 11251;
 		reg_en = 0;
 	end
+	16: begin
+		instr[OPCODE_WIDTH-1:0] = LW_IMM;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 3;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 0;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 32767;
+		pc_in = 8056;
+		reg_addr = 2;
+		reg_data = 4;
+		reg_en = 0;
+	end
+	17: begin
+		instr[OPCODE_WIDTH-1:0] = EOF;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 11;
+		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 16;
+		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 4751;
+		pc_in = 6521;
+		reg_addr = 17;
+		reg_data = 11251;
+		reg_en = 0;
+	end
 	default: begin
 		// nao faca nada de proposito
 	end
@@ -259,6 +279,7 @@ always @(posedge clk_in) begin
 		    $write(  "\t    OPCODE (%2d): %b (", OPCODE_WIDTH, instr[OPCODE_WIDTH-1:0]);
 		    case(instr[OPCODE_WIDTH-1:0])
 			LW:   $display("LW)");
+			LW_IMM:   $display("LW_IMM)");
 			SW:   $display("SW)");
 			ADD:  $display("ADD)");
 			SUB:  $display("SUB)");
@@ -274,6 +295,7 @@ always @(posedge clk_in) begin
 			CALL: $display("CALL)");
 			RET:  $display("RET)");
 			NOP:  $display("NOP)");
+			EOF:  $display("EOF)");
 		    endcase
 	    end
 	end

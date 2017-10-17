@@ -30,3 +30,5 @@ call r31
 ret
 
 nop
+eof
+

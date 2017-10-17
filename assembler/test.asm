@@ -8,3 +8,4 @@ jpc 1
 add r0,r1
 lw r4,1
 sw r0,0(r4)
+eof

@@ -4,7 +4,7 @@ module pipeline3_testbench();
 `include "params_proc.v"
 
 // indica o numero de testes a serem feitos
-parameter N_TESTES = 19;
+parameter N_TESTES = 21;
 
 // contador de testes a serem feitos
 integer testes;
@@ -249,6 +249,33 @@ always @(negedge clk_in) begin
         B       = 0;
         imm     = 0;
     end
+    19: begin
+        ctrl_in = LW_IMM;
+        pc_in   = 45000;
+        A_addr  = 8;
+        B_addr  = 0;
+        A       = 95;
+        B       = 0;
+        imm     = 42;
+    end
+    20: begin
+        ctrl_in = EOF;
+        pc_in   = 17542;
+        A_addr  = 0;
+        B_addr  = 0;
+        A       = 0;
+        B       = 0;
+        imm     = 0;
+    end
+    21: begin
+        ctrl_in = ADD;
+        pc_in   = 17543;
+        A_addr  = 0;
+        B_addr  = 1;
+        A       = 0;
+        B       = 1;
+        imm     = 1;
+    end
     default: begin
         // nao faca nada de proposito
     end
@@ -268,22 +295,24 @@ always @(posedge clk_in) begin
         $display("\t IMM: %6d  ", imm);
         $write(  "\t CTRL: %b (", ctrl_in);
         case(ctrl_in)
-        LW:   $display("LW)");
-        SW:   $display("SW)");
-        ADD:  $display("ADD)");
-        SUB:  $display("SUB)");
-        MUL:  $display("MUL)");
-        DIV:  $display("DIV)");
-        AND:  $display("AND)");
-        OR:   $display("OR)");
-        NOT:  $display("NOT)");
-        CMP:  $display("CMP)");
-        JR:   $display("JR)");
-        JPC:  $display("JPC)");
-        BRFL: $display("BRFL)");
-        CALL: $display("CALL)");
-        RET:  $display("RET)");
-        NOP:  $display("NOP)");
+        LW:       $display("LW)");
+        LW_IMM:   $display("LW_IMM)");
+        SW:       $display("SW)");
+        ADD:      $display("ADD)");
+        SUB:      $display("SUB)");
+        MUL:      $display("MUL)");
+        DIV:      $display("DIV)");
+        AND:      $display("AND)");
+        OR:       $display("OR)");
+        NOT:      $display("NOT)");
+        CMP:      $display("CMP)");
+        JR:       $display("JR)");
+        JPC:      $display("JPC)");
+        BRFL:     $display("BRFL)");
+        CALL:     $display("CALL)");
+        RET:      $display("RET)");
+        NOP:      $display("NOP)");
+        EOF:      $display("EOF)");
         endcase
     end
 end
@@ -300,22 +329,24 @@ always @(negedge clk_in) begin
         $display("\t REG_ADDR: %3d  ", reg_addr);
         $write(  "\t CTRL_OUT: %b (", ctrl_out);
         case(ctrl_out)
-        LW:   $display("LW)");
-        SW:   $display("SW)");
-        ADD:  $display("ADD)");
-        SUB:  $display("SUB)");
-        MUL:  $display("MUL)");
-        DIV:  $display("DIV)");
-        AND:  $display("AND)");
-        OR:   $display("OR)");
-        NOT:  $display("NOT)");
-        CMP:  $display("CMP)");
-        JR:   $display("JR)");
-        JPC:  $display("JPC)");
-        BRFL: $display("BRFL)");
-        CALL: $display("CALL)");
-        RET:  $display("RET)");
-        NOP:  $display("NOP)");
+        LW:      $display("LW)");
+        LW_IMM:  $display("LW_IMM)");
+        SW:      $display("SW)");
+        ADD:     $display("ADD)");
+        SUB:     $display("SUB)");
+        MUL:     $display("MUL)");
+        DIV:     $display("DIV)");
+        AND:     $display("AND)");
+        OR:      $display("OR)");
+        NOT:     $display("NOT)");
+        CMP:     $display("CMP)");
+        JR:      $display("JR)");
+        JPC:     $display("JPC)");
+        BRFL:    $display("BRFL)");
+        CALL:    $display("CALL)");
+        RET:     $display("RET)");
+        NOP:     $display("NOP)");
+        EOF:     $display("EOF)");
         endcase
     end
 end

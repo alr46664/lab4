@@ -5,6 +5,13 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 Top level modules:
 	ula_testbench
 
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline_ctrl.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline_ctrl.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module pipeline_ctrl
+
+Top level modules:
+	pipeline_ctrl
+
 } {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/ula.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/ula.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 -- Compiling module ula
@@ -25,6 +32,13 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 
 Top level modules:
 	controller
+
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline_testbench.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module pipeline_testbench
+
+Top level modules:
+	pipeline_testbench
 
 } {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_program_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_program_testbench.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
@@ -54,6 +68,20 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 Top level modules:
 	pipeline2_testbench
 
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline1.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline1.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module pipeline1
+
+Top level modules:
+	pipeline1
+
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline3_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline3_testbench.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module pipeline3_testbench
+
+Top level modules:
+	pipeline3_testbench
+
 } {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_data.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/mem_data.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 -- Compiling module mem_data
@@ -75,12 +103,12 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 Top level modules:
 	pipeline2
 
-} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline3_testbench.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline3_testbench.v}
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline3.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline3.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
--- Compiling module pipeline3_testbench
+-- Compiling module pipeline3
 
 Top level modules:
-	pipeline3_testbench
+	pipeline3
 
 } {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/regs.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
@@ -89,11 +117,25 @@ Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
 Top level modules:
 	regs
 
-} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline3.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline3.v}
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline4.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline4.v}
 Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
--- Compiling module pipeline3
+-- Compiling module pipeline4
 
 Top level modules:
-	pipeline3
+	pipeline4
+
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/top.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/top.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module top
+
+Top level modules:
+	top
+
+} {} {}} {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline5.v} {1 {vlog -work work -stats=none {C:/Users/Andre Luiz/Documents/0_LABORATORIO_INTEGRADO_IV/verilog_source/pipeline5.v}
+Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+-- Compiling module pipeline5
+
+Top level modules:
+	pipeline5
 
 } {} {}}

@@ -98,7 +98,7 @@ always @(posedge clk_in or negedge RST) begin
         ula_data1      <= 0;
         ula_data2      <= 0;
 		// saidas estaveis (== 1)
-        done        <= 1;
+        done           <= 1;
 		case(ctrl_in)
 		LW: begin
     		// pegue o conteudo presente no endereco de
@@ -110,6 +110,15 @@ always @(posedge clk_in or negedge RST) begin
     		// e armazene no registrador A
     		reg_addr       <= A_addr;
 		end
+        LW_IMM: begin
+            // pegue o conteudo IMM
+            ula_to_data    <= 1;
+            ula_opcode     <= ADD;
+            ula_data1      <= imm;
+            ula_data2      <= 0;
+            // e armazene no registrador A
+            reg_addr       <= A_addr;
+        end
 		SW: begin
     		// armazene na memoria no endereco B + imm
     		ula_to_data    <= 0;
@@ -159,6 +168,9 @@ always @(posedge clk_in or negedge RST) begin
 		NOP: begin
 			// nao faca nada de proposito
 		end
+        EOF: begin
+            // nao faca nada de proposito
+        end
 		default: begin
     		// armazene no registrador A
     		reg_addr    <= A_addr;
