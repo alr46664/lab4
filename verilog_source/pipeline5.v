@@ -24,22 +24,44 @@ output reg [REG_ADDR_WIDTH-1:0] addr_out;
 output reg en_out, done;
 
 // execucao da gravacao nos registradores
-always @(negedge clk_in or negedge RST) begin
-    if (!RST) begin
+always @(negedge clk_in or negedge RST) 
+begin
+    if (!RST) 
+    begin
         // rotina de reset
         data_out  <= 0;
         addr_out  <= 0;
         en_out    <= 0;
         done      <= 0;
-    end else begin
+	 end 
+	 else 
+	 begin
         data_out  <= data;
         addr_out  <= addr;
-        // TODO implementar o controle de
-        // gravacao do pipeline 5 (abaixo)
-        en_out    <= 0;
-        done      <= 1;
-    end
+		  
+		  // Case para controle de habilitação de escrita no registrador de acordo com o opcode de entrada.
+		  case (ctrl_in) 		  
+				// ------------ Data Trasnfer -----------------								
+        LW:    en_out <= 1;
+				  
+				// ------------ Arithmetic -----------------
+				ADD:   en_out <= 1;
+				SUB:   en_out <= 1;
+				MUL:   en_out <= 1;
+				DIV:   en_out <= 1;				        
+        AND:   en_out <= 1;				  
+        OR :   en_out <= 1;				  
+        NOT:   en_out <= 1;				  
+				  
+				// ------------ Lógic -----------------
+				// All default
+				  
+				// ------------ Control Transfer -----------------
+				// All default
+				
+		  default  en_out <= 0;
+		  endcase		  
+      done      <= 1;
+	 end
 end
-
-
 endmodule
