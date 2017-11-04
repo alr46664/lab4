@@ -42,19 +42,18 @@ begin
 		  // Case para controle de habilitação de escrita no registrador de acordo com o opcode de entrada.
 		  case (ctrl_in) 		  
 				// ------------ Data Trasnfer -----------------								
-        LW:    en_out <= 1;
+            LW:    en_out <= 1;
 				  
 				// ------------ Arithmetic -----------------
 				ADD:   en_out <= 1;
 				SUB:   en_out <= 1;
 				MUL:   en_out <= 1;
 				DIV:   en_out <= 1;				        
-        AND:   en_out <= 1;				  
-        OR :   en_out <= 1;				  
-        NOT:   en_out <= 1;				  
 				  
 				// ------------ Lógic -----------------
-				// All default
+				AND:   en_out <= 1;				  
+            OR :   en_out <= 1;				  
+				NOT:   en_out <= 1;		
 				  
 				// ------------ Control Transfer -----------------
 				// All default
@@ -64,4 +63,6 @@ begin
       done      <= 1;
 	 end
 end
+
+
 endmodule
