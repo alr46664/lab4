@@ -39,6 +39,9 @@ wire clk_p1, clk_p2, clk_p3, clk_p4, clk_p5;
 wire done_p1, done_p2, done_p3, done_p4, done_p5;
 wire eof;
 
+    // multiplexador de hazard
+wire [DATA_WIDTH-1:0] muxA_data, muxB_data;
+
 // variaveis auxiliares
 
 // instancias
@@ -49,7 +52,15 @@ pipeline_ctrl pipe_ctrl(
     .done_p3(done_p3), .done_p4(done_p4), .done_p5(done_p5),
     .clk_p1(clk_p1), .clk_p2(clk_p2), .clk_p3(clk_p3),        // controle dos clks dos estagios de pipeline
     .clk_p4(clk_p4), .clk_p5(clk_p5),
-    .eof(eof)                                                 // indica fim do programa
+    .reg_addr_p34(reg_addr_p3),                                // controle de hazards - ADDR
+    .reg_addr_p45(reg_addr_out_p4),
+    .reg_addr_p52(reg_addr_p2),
+    .reg_dataA_p2(A), .reg_dataB_p2(B),                       // controle de hazards - DATA - dados em output de p2
+    .reg_data_p34(data_p3),                                      // dados entre p3-4
+    .reg_data_p45(reg_data_out_p4),                              // dados entre p4-5
+    .reg_data_p52(reg_data_p2),                                  // dados entre p5-2
+    .muxA_data(muxA_data), .muxB_data(muxB_data),            // saida dos multiplexadores de hazard
+    .eof(eof)                                                // indica fim do programa
     );
 
 pipeline1 pipe1(.clk_in(clk_p1), .RST(RST),
@@ -73,7 +84,7 @@ pipeline3 pipe3(
     .clk_in(clk_p3), .RST(RST),
     .ctrl_in(ctrl_p2), .pc_in(pc_out_p2),
     .A_addr(A_addr), .B_addr(B_addr),
-    .A(A), .B(B), .imm(imm),
+    .A(muxA_data), .B(muxB_data), .imm(imm),
     .pc_chg(pc_chg_p1), .pc_out(pc_in_p1),
     .data(data_p3), .addr(addr_p3),
     .reg_addr(reg_addr_p3), .ctrl_out(ctrl_out_p3),

@@ -12,7 +12,8 @@ parameter MEM_WIDTH       = 16,  // TAMANHO EM BITS MEMORIA
           INSTR_WIDTH     = OPCODE_WIDTH + 2*REG_ADDR_WIDTH + DATA_WIDTH,  // TAMANHO EM BITS DAS INSTRUCOES DO PROCESSADOR
           CTRL_WIDTH      = 6,   // TAMANHO EM BITS DO CONTROLLER DO PROCESSADOR
           PC_WIDTH        = 16,  // TAMANHO EM BITS DO CONTADOR DE PROGRAMA
-          RFLAGS_WIDTH    = 5;   // TAMANHO DO RFLAGS
+          RFLAGS_WIDTH    = 5,   // TAMANHO DO RFLAGS
+          CS_HAZARD_WIDTH = 2;   // TAMANHO DO SELETOR DO MULTIPLEXADOR DE HAZARD
 
 // definicao das instrucoes
 parameter LW     = 6'b000000, // faz load do valor armazenado no endero de memoria (B + imm)
