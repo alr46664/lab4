@@ -34,7 +34,7 @@ assign we   = 0;
 assign data = 0;
 
 // defina o novo PC
-always @(posedge clk_in or negedge RST or pc_chg or pc_in) begin
+always @(posedge clk_in or negedge RST or posedge pc_chg) begin
     if (!RST) begin
         new_pc <= PC_INITIAL;
     end else if (pc_chg) begin
