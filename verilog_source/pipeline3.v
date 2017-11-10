@@ -10,11 +10,11 @@ module pipeline3(
 	imm,       // dados do imediato
 	pc_chg,    // indica alteracao do PC
 	pc_out,    // indica alteracao do PC
+    mem_we,    // indica altercao da memoria de dados (SW)
     data,      // dados computados
     addr,      // endereco de memoria computado
     reg_addr,  // endereco do registrador para gravacao
-    ctrl_out,  // controller do processador
-    done       // saidas estaveis
+    ctrl_out   // controller do processador
 );
 
 // faz o include dos parameters das instrucoes
@@ -27,15 +27,16 @@ input [PC_WIDTH-1:0] pc_in;
 input [REG_ADDR_WIDTH-1:0] A_addr, B_addr;
 input signed [DATA_WIDTH-1:0] A, B, imm;
 
+output reg pc_chg;
 output reg [PC_WIDTH-1:0] pc_out;
+output reg mem_we;
 output reg signed [DATA_WIDTH-1:0] data;
 output reg [MEM_WIDTH-1:0] addr;
 output reg [REG_ADDR_WIDTH-1:0] reg_addr;
 output reg [CTRL_WIDTH-1:0] ctrl_out;
-output reg pc_chg, done;
 
 // variaveis auxiliares
-reg  [RFLAGS_WIDTH-1:0] rflags_last;
+reg [RFLAGS_WIDTH-1:0] rflags_last;
 wire signed [DATA_WIDTH-1:0] B_imm;
 
 // controla se a saida de ula vai pra data,
@@ -57,7 +58,7 @@ ula ula0(.opcode(ula_opcode),
 	.out(ula_out), .rflags(rflags));
 
 // armazene o rflags
-always @(negedge clk_in or negedge RST) begin
+always @(negedge clk_in) begin
 	if (!RST) begin
 		rflags_last  <= 0;
 	end else begin
@@ -67,16 +68,20 @@ end
 
 // repasse o control
 always @(posedge clk_in) begin
-    ctrl_out    <= ctrl_in;
+    if (!RST) begin
+        ctrl_out    <= NOP;
+    else begin
+        ctrl_out    <= ctrl_in;
+    end
 end
 
 // execute a instrucao
-always @(posedge clk_in or negedge RST) begin
+always @(posedge clk_in) begin
 	if (!RST) begin
 		// rotina de reset
-		pc_out      <= PC_INITIAL;
-		reg_addr    <= 0;
-		pc_chg 	    <= 0;
+		pc_out         <= PC_INITIAL + 1;
+		reg_addr       <= 0;
+		pc_chg 	       <= 0;
 		// valores default dos regs internos
 		ula_to_data    <= 0;
 		data_default   <= 0;
@@ -84,8 +89,7 @@ always @(posedge clk_in or negedge RST) begin
 		ula_opcode     <= NOP;
 		ula_data1      <= 0;
 		ula_data2      <= 0;
-        // saidas instaveis
-        done           <= 0;
+        mem_we         <= 0;
 	end	else begin
         pc_out      <= pc_in;
         reg_addr    <= A_addr;
@@ -97,8 +101,7 @@ always @(posedge clk_in or negedge RST) begin
         ula_opcode     <= NOP;
         ula_data1      <= 0;
         ula_data2      <= 0;
-		// saidas estaveis (== 1)
-        done           <= 1;
+        mem_we         <= 0;
 		case(ctrl_in)
 		LW: begin
     		// pegue o conteudo presente no endereco de
@@ -125,6 +128,8 @@ always @(posedge clk_in or negedge RST) begin
 			ula_opcode     <= ADD;
     		ula_data1      <= B_imm;
     		ula_data2      <= 0;
+            // indique que vamos salvar dados na memoria
+            mem_we         <= 1;
     		// o conteudo de reg A
     		data_default   <= A;
 		end
@@ -168,9 +173,6 @@ always @(posedge clk_in or negedge RST) begin
 		NOP: begin
 			// nao faca nada de proposito
 		end
-        EOF: begin
-            // nao faca nada de proposito
-        end
 		default: begin
     		// armazene no registrador A
     		reg_addr    <= A_addr;

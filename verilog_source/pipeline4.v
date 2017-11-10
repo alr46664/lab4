@@ -2,13 +2,13 @@ module pipeline4(
     clk_in,
     RST,
     ctrl_in,
+    we,
     data,
     addr,
     reg_addr_in,
     reg_data_out,
     reg_addr_out,
-    ctrl_out,
-    done
+    ctrl_out
 );
 
 // faz o include dos parameters das instrucoes
@@ -16,6 +16,7 @@ module pipeline4(
 
 input clk_in, RST;
 input [CTRL_WIDTH-1:0] ctrl_in;
+input we;
 input signed [DATA_WIDTH-1:0] data;
 input [MEM_WIDTH-1:0] addr;
 input [REG_ADDR_WIDTH-1:0] reg_addr_in;
@@ -23,41 +24,22 @@ input [REG_ADDR_WIDTH-1:0] reg_addr_in;
 output wire signed [DATA_WIDTH-1:0] reg_data_out;
 output reg [REG_ADDR_WIDTH-1:0] reg_addr_out;
 output reg [CTRL_WIDTH-1:0] ctrl_out;
-output reg done;
-
-// varaiveis auxiliares
-reg we;
-wire clk_mem;
 
 //instancias
-mem_data rom0(.clk(clk_mem), .we(we), .addr(addr), .data_in(data), .data_out(reg_data_out));
+mem_data rom0(.clk(clk_in), .we(we), .addr(addr), .data_in(data), .data_out(reg_data_out));
 
-// gere clk da memoria
-assign clk_mem = !clk_in;
-
-// repasse o control
-always @(posedge clk_in) begin
-    ctrl_out    <= ctrl_in;
+// repasse do endereco de registrador
+always @(posedge clk) begin
+  reg_addr_out <= reg_addr_in;
 end
 
-// execucao da gravacao em memoria do pipeline 4
-always @(posedge clk_in or negedge RST) begin
+// reset do sistema
+always @(posedge clk_in) begin
     if (!RST) begin
-        // rotina de reset
-        reg_addr_out  <= 0;
-        we <= 0;
-        done          <= 0;
+      // rotina de reset
+      ctrl_out    <= NOP;
     end else begin
-        reg_addr_out  <= reg_addr_in;
-        done          <= 1;
-        case (ctrl_in)							
-          SW: begin
-             we <= 1;
-          end          	  
-		  default: begin
-              we <= 0;
-		  end
-          endcase		          
+      ctrl_out    <= ctrl_in;
     end
 end
 

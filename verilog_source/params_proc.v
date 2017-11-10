@@ -32,5 +32,4 @@ parameter LW     = 6'b000000, // faz load do valor armazenado no endero de memor
           BRFL   = 6'b001100,
           CALL   = 6'b001101,
           RET    = 6'b001110,
-          NOP    = 6'b001111,
-          EOF    = 6'b111111; // indica fim do programa
+          NOP    = 6'b001111;

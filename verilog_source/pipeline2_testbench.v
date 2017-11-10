@@ -21,7 +21,6 @@ wire signed [DATA_WIDTH-1:0] A, B, imm;
 wire [REG_ADDR_WIDTH-1:0] A_addr, B_addr;
 wire [PC_WIDTH-1:0] pc_out;
 wire [CTRL_WIDTH-1:0] ctrl;
-wire done;
 
 // instancia do modulo a ser testado
 pipeline2 pipeline20(
@@ -38,8 +37,8 @@ pipeline2 pipeline20(
     .B(B),
     .imm(imm),
     .ctrl(ctrl),
-	.pc_out(pc_out),
-    .done(done));
+	.pc_out(pc_out)
+	);
 
 
 // inicializando testes em 0

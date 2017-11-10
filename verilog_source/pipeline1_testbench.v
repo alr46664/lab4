@@ -15,7 +15,6 @@ reg [PC_WIDTH-1:0] pc_in;
 
 wire [INSTR_WIDTH-1:0] instr;
 wire [PC_WIDTH-1:0] pc_out;
-wire done;
 
 
 
@@ -26,8 +25,8 @@ pipeline1 pipeline10(
 	.pc_chg(pc_chg),
 	.pc_in(pc_in),
 	.instr(instr),
-	.pc_out(pc_out),
-	.done(done));
+	.pc_out(pc_out)
+	);
 
 // inicializando testes em 0
 initial begin

@@ -4,8 +4,7 @@ module pipeline1(
     pc_chg,    // indica mudanca do PC fora do pipeline 1
     pc_in,     // entrada - contador de programa
     instr,     // instrucao
-    pc_out,    // saida - contador de programa
-    done       // saidas estaveis
+    pc_out    // saida - contador de programa
 );
 
 // faz o include dos parameters das instrucoes
@@ -20,7 +19,6 @@ input [PC_WIDTH-1:0] pc_in;
 
 output [INSTR_WIDTH-1:0] instr;
 output reg [PC_WIDTH-1:0] pc_out;
-output reg done;
 
 // variaveis auxiliares
 reg [PC_WIDTH-1:0] new_pc;
@@ -33,8 +31,8 @@ mem_program rom0(.clk(clk_in), .we(we), .addr(new_pc), .data_in(data), .data_out
 assign we   = 0;
 assign data = 0;
 
-// defina o novo PC
-always @(posedge clk_in or negedge RST or posedge pc_chg) begin
+// defina o PC de leitura de memoria
+always @(posedge clk_in) begin
     if (!RST) begin
         new_pc <= PC_INITIAL;
     end else if (pc_chg) begin
@@ -44,16 +42,12 @@ always @(posedge clk_in or negedge RST or posedge pc_chg) begin
     end
 end
 
-// coloque as saidas disponiveis pro proximo pipeline
-always @(posedge clk_in or negedge RST) begin
+// defina saida do PC + 1
+always @(posedge clk_in) begin
     if (!RST) begin
-        pc_out <= PC_INITIAL + 1;   // reset - PC vai pro valor inicial
-        done   <= 0;                // saidas instaveis
+        pc_out <= PC_INITIAL + 1;
     end else begin
-        // calcula endereço da próxima instrução (pc_chg == 1 indica
-        // mudanca no PC vinda do pipeline 3)
         pc_out <= new_pc + 1;
-        done   <= 1;            // saidas estaveis (== 1)
     end
 end
 

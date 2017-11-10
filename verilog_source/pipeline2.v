@@ -12,8 +12,7 @@ module pipeline2(
     B,         // dados do registrador 2
     imm,       // immediato
 	pc_out,    // saida - contador de programa
-    ctrl,      // saida - controller do processador,
-    done       // saidas estaveis
+    ctrl      // saida - controller do processador,
 );
 
 // faz o include dos parameters das instrucoes
@@ -29,7 +28,6 @@ input reg_en;
 
 output reg signed [DATA_WIDTH-1:0] imm;
 output reg [PC_WIDTH-1:0] pc_out;
-output reg done;
 output reg [REG_ADDR_WIDTH-1:0] A_addr, B_addr;
 output signed [DATA_WIDTH-1:0] A, B;
 output [CTRL_WIDTH-1:0] ctrl;
@@ -46,7 +44,7 @@ regs regs0(.clk(clk_in),
 
 // decodifique a instrucao e
 // gera done indicando dados de saida estaveis
-always @(posedge clk_in or negedge RST) begin
+always @(posedge clk_in) begin
 	if (!RST) begin
 		// rotina de reset
 		opcode      <= NOP;
@@ -54,9 +52,7 @@ always @(posedge clk_in or negedge RST) begin
 		B_addr      <= 0;
 		imm         <= 0;
 		// reset - PC vai pro valor inicial
-		pc_out      <= PC_INITIAL;
-        // saidas instaveis
-        done        <= 0;
+		pc_out      <= PC_INITIAL + 1;
 	end	else begin
 		opcode      <= instr[OPCODE_WIDTH-1:0];
 		A_addr      <= instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH];
@@ -68,8 +64,6 @@ always @(posedge clk_in or negedge RST) begin
 		end
 		// faca pc_out = pc_in (nao mexemos no pc no pipeline 2)
 		pc_out      <= pc_in;
-        // saidas estaveis (== 1)
-        done        <= 1;
 	end
 end
 

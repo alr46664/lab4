@@ -21,7 +21,8 @@ wire signed [DATA_WIDTH-1:0] data;
 wire [MEM_WIDTH-1:0] addr;
 wire [REG_ADDR_WIDTH-1:0] reg_addr;
 wire [CTRL_WIDTH-1:0] ctrl_out;
-wire pc_chg, done;
+wire pc_chg;
+wire we;
 
 // instancia do modulo a ser testado
 pipeline3 pipeline30(
@@ -36,11 +37,11 @@ pipeline3 pipeline30(
     .imm(imm),
     .pc_chg(pc_chg),
     .pc_out(pc_out),
+    .mem_we(we),
     .data(data),
     .addr(addr),
     .reg_addr(reg_addr),
-    .ctrl_out(ctrl_out),
-    .done(done)
+    .ctrl_out(ctrl_out)
 );
 
 
@@ -259,15 +260,6 @@ always @(negedge clk_in) begin
         imm     = 42;
     end
     20: begin
-        ctrl_in = EOF;
-        pc_in   = 17542;
-        A_addr  = 0;
-        B_addr  = 0;
-        A       = 0;
-        B       = 0;
-        imm     = 0;
-    end
-    21: begin
         ctrl_in = ADD;
         pc_in   = 17543;
         A_addr  = 0;
@@ -321,7 +313,6 @@ always @(negedge clk_in) begin
     if (testes >= 0 && testes  < N_TESTES) begin
         // ENTRADAS (estaveis)
         $display("\t ------ SAIDAS -------  ");
-        $display("\t DONE: %b", done);
         $display("\t PC_CHG: %b", pc_chg);
         $display("\t PC_OUT: %6d  ", pc_out);
         $display("\t DATA: %6d  ", data);

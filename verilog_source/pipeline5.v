@@ -7,7 +7,6 @@ module pipeline5(
     data_out,
     addr_out,
     en_out,
-    done
 );
 
 // faz o include dos parameters das instrucoes
@@ -21,46 +20,37 @@ input [REG_ADDR_WIDTH-1:0] addr;
 
 output reg signed [DATA_WIDTH-1:0] data_out;
 output reg [REG_ADDR_WIDTH-1:0] addr_out;
-output reg en_out, done;
+output reg en_out;
+
+// repasse dos enderecos data e addr
+always @(posedge clk_in) begin
+    data_out <= data;
+    addr_out <= addr;
+end
 
 // execucao da gravacao nos registradores
-always @(negedge clk_in or negedge RST) 
-begin
-    if (!RST) 
-    begin
+always @(posedge clk_in) begin
+    if (!RST) begin
         // rotina de reset
-        data_out  <= 0;
-        addr_out  <= 0;
         en_out    <= 0;
-        done      <= 0;
-	 end 
-	 else 
-	 begin
-        data_out  <= data;
-        addr_out  <= addr;
-		  
-		  // Case para controle de habilitação de escrita no registrador de acordo com o opcode de entrada.
-		  case (ctrl_in) 		  
-				// ------------ Data Trasnfer -----------------								
-            LW:    en_out <= 1;
-				  
-				// ------------ Arithmetic -----------------
-				ADD:   en_out <= 1;
-				SUB:   en_out <= 1;
-				MUL:   en_out <= 1;
-				DIV:   en_out <= 1;				        
-				  
-				// ------------ Lógic -----------------
-				AND:   en_out <= 1;				  
-            OR :   en_out <= 1;				  
-				NOT:   en_out <= 1;		
-				  
-				// ------------ Control Transfer -----------------
-				// All default
-				
-		  default  en_out <= 0;
-		  endcase		  
-      done      <= 1;
+	end else begin
+        // Case para controle de habilitação de escrita no registrador de acordo com o opcode de entrada.
+        case (ctrl_in)
+        // ------------ Data Trasnfer -----------------
+        LW:       en_out <= 1;
+        // ------------ Arithmetic -----------------
+        ADD:      en_out <= 1;
+        SUB:      en_out <= 1;
+        MUL:      en_out <= 1;
+        DIV:      en_out <= 1;
+        // ------------ Lógic -----------------
+        AND:      en_out <= 1;
+        OR :      en_out <= 1;
+        NOT:      en_out <= 1;
+        // ------------ Control Transfer -----------------
+        // All default
+        default:  en_out <= 0;
+        endcase
 	 end
 end
 
