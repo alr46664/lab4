@@ -70,7 +70,7 @@ end
 always @(posedge clk_in) begin
     if (!RST) begin
         ctrl_out    <= NOP;
-    else begin
+    end else begin
         ctrl_out    <= ctrl_in;
     end
 end
