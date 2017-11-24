@@ -7,7 +7,7 @@ module pic(
 	data_out,   // dados para transmissão	
 	data_en,    // sinal para informar que os dados estão prontos para serem enviados
 	RST	      // reset
-)
+);
 
 // faz o include dos parameters das instrucoes
 `include "params_proc.v"
@@ -53,6 +53,4 @@ end
 
 
 
-		
-	
 endmodule
