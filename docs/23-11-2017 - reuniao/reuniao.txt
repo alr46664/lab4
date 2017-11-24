@@ -1,0 +1,28 @@
+1. Resumo
+
+	Na reunião do dia 23/11/2017 iniciamos a discussão sobre os detalhes de implementação da pilha de instruções/interrupções.
+  
+2. Ideias
+
+- Usar a mesma pilha de instruções para as interrupções;
+- Realizar controle de pilha cheia (overflow) e pilha vazia (underflow);
+- No caso de overflow ou underflow, paralisar o processador e indicar erro;
+- A FSM que controla a pilha independente de estágio (implementada no controlador de pipeline);
+- Usar memória separada para o mapeamento em memória.
+
+3. Fatos
+
+- A estrutura de implementação de pilha em hardware é semelhante à de software (ponteiro indicando topo da pilha, etc);
+- Todos os módulos possuírem RST.
+
+4. Questões
+
+- Como implementar a pilha de interrupções?
+- Haverá empilhamento de interrupções?
+- O vetor de interrupções será interno ou externo ao PIC?
+
+5. Metas
+
+- Pensar em como implementar o mascaramento de interrupções;
+- Mapeamento em memória;
+- Vetor de interrupções (memória).
