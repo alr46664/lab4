@@ -6,8 +6,8 @@ module pic(
 	data_in,    // dados recebidos
 	data_out,   // dados para transmissão	
 	data_en,    // sinal para informar que os dados estão prontos para serem enviados
-	RST	      // reset
-)
+	RST	        // reset
+);
 
 // faz o include dos parameters das instrucoes
 `include "params_proc.v"
@@ -48,6 +48,7 @@ always @(*) begin
 	if(intr_in) begin           //houve resposta do processador. Enviar dados!		
 		data_out = data_in;      // repassa os dados
 		data_en = 1'b1;		    // habilita o controle de envio de dados para avisar o processador que os dados estão preparados para o envio.
+		
 	end
 end 
 

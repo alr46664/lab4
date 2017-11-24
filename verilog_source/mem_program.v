@@ -12,12 +12,12 @@ module mem_program(
 // declaracao de entrada / saida
 input clk, we;
 input [INSTR_WIDTH-1:0] data_in;
-input [MEM_WIDTH-1:0] addr;
+input [PC_WIDTH-1:0] addr;
 
 output reg [INSTR_WIDTH-1:0] data_out;
 
 // declaracao da memoria
-reg [INSTR_WIDTH-1:0] ram [0:(1<<MEM_WIDTH)-1];
+reg [INSTR_WIDTH-1:0] ram [0:(1<<PC_WIDTH)-1];
 
 // saida da memoria ROM de programa
 always @(posedge clk) begin
