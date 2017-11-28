@@ -52,10 +52,21 @@ reg [OPCODE_WIDTH-1:0] ula_opcode;
 wire signed [DATA_WIDTH-1:0] ula_out;
 wire [RFLAGS_WIDTH-1:0] rflags;
 
+// sinais da pilha
+wire [PC_WIDTH-1:0] pilha_pc_out;
+wire pilha_err;
+
 // instancias de outros modulos
 ula ula0(.opcode(ula_opcode),
 	.data1(ula_data1), .data2(ula_data2),
 	.out(ula_out), .rflags(rflags));
+
+pilha_ctrl pilha_ctrl0(
+    .active(clk_in), .RST(RST),
+    .instr(ctrl_in), .pc_in(pc_in),
+    .pc_out(pilha_pc_out),
+	.error(pilha_err)
+);
 
 // armazene o rflags
 always @(negedge clk_in) begin
@@ -153,22 +164,15 @@ always @(posedge clk_in) begin
 			end
 		end
 		CALL: begin
-			// grave no registrador de retorno de funcao
-    		reg_addr     <= REG_FUNC_RET;
-    		// o valor do pc atual
-    		ula_to_data  <= 1;
-			ula_opcode   <= ADD;
-	        ula_data1    <= pc_in;
-	        ula_data2    <= 0;
-	        // e altere o pc para a funcao chamada
+	        // altere o pc para a funcao chamada
 			pc_chg   <= 1;
 			pc_out   <= A;
 		end
 		RET: begin
 			// altere o pc para o retorno da chamada de funcao,
-			// armazenado em A
+			// armazenado na pilha
 			pc_chg   <= 1;
-			pc_out   <= A;
+			pc_out   <= pilha_pc_out;
 		end
 		NOP: begin
 			// nao faca nada de proposito

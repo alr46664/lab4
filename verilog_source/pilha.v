@@ -1,9 +1,9 @@
 module pilha(	
 	active,      // faz a operacao na memoria
-	data_in,    // dados a serem gravados na pilha
-	ctrl,       // controle da pilha
-	data_out,   // dados no topo da pilha
-	error      // erro (overflow, underflow)
+	data_in,     // dados a serem gravados na pilha
+	ctrl,        // controle da pilha
+	data_out,    // dados no topo da pilha
+	error        // erro (overflow, underflow)
 );
 
 // include dos parameters
@@ -29,7 +29,7 @@ assign data_out = regs[topo_real];
 assign topo_real = topo - 1;
 
 // controle de gravacao na pilha
-always@(active) begin
+always @(posedge active) begin
 	case (ctrl)
 	PILHA_PUSH: begin
 		if (topo_real == (1<<PILHA_WIDTH)-1) begin

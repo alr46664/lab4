@@ -1,5 +1,3 @@
-// DEFINICOES DA CHAMADA DE FUNCAO
-parameter REG_FUNC_RET = 5'd31;  // endereco do reg que armazena o endereco de retorno de um call
 
 // definicoes do PC
 parameter PC_INITIAL = 16'd0;   // endereco que comeca a execucao do programa
