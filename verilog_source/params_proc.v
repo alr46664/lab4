@@ -13,8 +13,8 @@ parameter MEM_WIDTH       = 16,  // TAMANHO EM BITS MEMORIA
           CTRL_WIDTH      = 6,   // TAMANHO EM BITS DO CONTROLLER DO PROCESSADOR
           PC_WIDTH        = 16,  // TAMANHO EM BITS DO CONTADOR DE PROGRAMA
           RFLAGS_WIDTH    = 5,   // TAMANHO DO RFLAGS
-          CS_HAZARD_WIDTH = 2,   // TAMANHO DO SELETOR DO MULTIPLEXADOR DE HAZARD
-			 IRQ_WIDTH       = 4;   // TAMANHO DO IRQ EM BITS
+          CS_HAZARD_WIDTH = 2,   // TAMANHO DO SELETOR DO MULTIPLEXADOR DE HAZARD			 
+			 IRQ_VECTOR_INTR = 256; // TAMANHA DO VETOR DE INTERRUPÇÕES
 
 // definicao das instrucoes
 parameter LW     = 6'b000000, // faz load do valor armazenado no endero de memoria (B + imm)
@@ -34,22 +34,3 @@ parameter LW     = 6'b000000, // faz load do valor armazenado no endero de memor
           CALL   = 6'b001101,
           RET    = 6'b001110,
           NOP    = 6'b001111;
-			 
-// definições das interrupções. As mascaradas começam sempre com 1 e por sua vez tem prioridade sobre as outras.		
-parameter IRQ_0  = 4'b0000,
-			 IRQ_1  = 4'b0001,
-			 IRQ_2  = 4'b0010,
-			 IRQ_3  = 4'b0011,
-			 IRQ_4  = 4'b0100,
-			 IRQ_5  = 4'b0101,
-			 IRQ_6  = 4'b0110,
-			 IRQ_7  = 4'b0111,
-			 IRQ_8  = 4'b1000,
-			 IRQ_9  = 4'b1001,
-			 IRQ_10 = 4'b1010,
-			 IRQ_11 = 4'b1011,
-			 IRQ_12 = 4'b1100,
-			 IRQ_13 = 4'b1101,
-			 IRQ_14 = 4'b1110,
-			 IRQ_15 = 4'b1111;
-			 
