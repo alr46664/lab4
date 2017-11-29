@@ -14,7 +14,8 @@ parameter MEM_WIDTH       = 16,  // TAMANHO EM BITS MEMORIA
           PC_WIDTH        = 16,  // TAMANHO EM BITS DO CONTADOR DE PROGRAMA
           RFLAGS_WIDTH    = 5,   // TAMANHO DO RFLAGS
           CS_HAZARD_WIDTH = 2,   // TAMANHO DO SELETOR DO MULTIPLEXADOR DE HAZARD			 
-			 IRQ_VECTOR_INTR = 256; // TAMANHA DO VETOR DE INTERRUPÇÕES
+          INTERRUPT_WIDTH = 8,   // QUANTIDADE DE INTERRUPCOES DO PROCESSADOR          
+          DEVICES_QTD     = 4;   // QUANTIDADE DE DISPOSITIVOS EXTERNOS QUE EMITEM INTERRUPCAO
 
 // definicao das instrucoes
 parameter LW     = 6'b000000, // faz load do valor armazenado no endero de memoria (B + imm)
