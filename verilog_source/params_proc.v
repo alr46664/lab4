@@ -1,5 +1,6 @@
-// DEFINICOES DA CHAMADA DE FUNCAO
-parameter REG_FUNC_RET = 5'd31;  // endereco do reg que armazena o endereco de retorno de um call
+// endereo de registradores especiais
+parameter REG_AUX_0  = 5'd0,  // registrador auxiliar 0
+          REG_AUX_1  = 5'd1;  // registrador auxiliar 1
 
 // definicoes do PC
 parameter PC_INITIAL = 16'd0;   // endereco que comeca a execucao do programa
@@ -13,8 +14,8 @@ parameter MEM_WIDTH       = 16,  // TAMANHO EM BITS MEMORIA
           CTRL_WIDTH      = 6,   // TAMANHO EM BITS DO CONTROLLER DO PROCESSADOR
           PC_WIDTH        = 16,  // TAMANHO EM BITS DO CONTADOR DE PROGRAMA
           RFLAGS_WIDTH    = 5,   // TAMANHO DO RFLAGS
-          CS_HAZARD_WIDTH = 2,   // TAMANHO DO SELETOR DO MULTIPLEXADOR DE HAZARD			 
-          INTERRUPT_WIDTH = 8,   // QUANTIDADE DE INTERRUPCOES DO PROCESSADOR          
+          CS_HAZARD_WIDTH = 2,   // TAMANHO DO SELETOR DO MULTIPLEXADOR DE HAZARD
+          INTERRUPT_WIDTH = 8,   // QUANTIDADE DE INTERRUPCOES DO PROCESSADOR
           DEVICES_QTD     = 4;   // QUANTIDADE DE DISPOSITIVOS EXTERNOS QUE EMITEM INTERRUPCAO
 
 // definicao das instrucoes

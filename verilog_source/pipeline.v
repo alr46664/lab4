@@ -1,6 +1,8 @@
 module pipeline(
     clk,
-    RST
+    RST,
+    devices_data,
+    interruption_vec
     );
 
 // faz o include dos parameters das instrucoes
@@ -8,6 +10,8 @@ module pipeline(
 
 // input output
 input clk, RST;
+input [(DEVICES_QTD*DATA_WIDTH)-1:0] devices_data;
+input [(1<<INTERRUPT_WIDTH)-1:0] interruption_vec;
 
     // pipe 1
 wire pc_chg_p1;
@@ -38,6 +42,10 @@ wire [CTRL_WIDTH-1:0] ctrl_out_p4;
     // multiplexador de hazard
 wire [DATA_WIDTH-1:0] muxA_data, muxB_data;
 
+    // pic
+wire pic_interruption_send;
+wire [INSTR_WIDTH-1:0] pic_interruption_instr;
+
 // variaveis auxiliares
 
 // instancias
@@ -56,7 +64,9 @@ pipeline_ctrl pipe_ctrl(
 
 pipeline1 pipe1(.clk_in(clk), .RST(RST),
     .pc_chg(pc_chg_p1), .pc_in(pc_in_p1), .pc_out(pc_out_p1),
-    .instr(instr)
+    .instr(instr),
+    .interruption_has(pic_interruption_send),
+    .interruption_instr(pic_interruption_instr)
     );
 
 pipeline2 pipe2(
@@ -94,6 +104,14 @@ pipeline5 pipe5(
     .ctrl_in(ctrl_out_p4),
     .data(reg_data_out_p4), .addr(reg_addr_out_p4),
     .data_out(reg_data_p2), .addr_out(reg_addr_p2), .en_out(reg_en_p2)
+);
+
+pic pic0(
+    .clk(clk), .RST(RST),
+    .data_in(devices_data),
+    .interruption_vec(interruption_vec),
+    .interruption_send(pic_interruption_send),
+    .interruption_instr(pic_interruption_instr)
 );
 
 endmodule
