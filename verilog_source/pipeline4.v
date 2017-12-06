@@ -29,7 +29,7 @@ output reg [CTRL_WIDTH-1:0] ctrl_out;
 mem_data rom0(.clk(clk_in), .we(we), .addr(addr), .data_in(data), .data_out(reg_data_out));
 
 // repasse do endereco de registrador
-always @(posedge clk) begin
+always @(posedge clk_in) begin
   reg_addr_out <= reg_addr_in;
 end
 

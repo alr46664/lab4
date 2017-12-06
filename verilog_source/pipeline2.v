@@ -34,14 +34,17 @@ output [CTRL_WIDTH-1:0] ctrl;
 
 // variaveis auxiliares
 reg [OPCODE_WIDTH-1:0] opcode;
+wire clk_neg;
 
 // instanciacao do controller e do banco de registradores
 controller ctrl0(.opcode(opcode), .ctrl(ctrl));
-regs regs0(.clk(clk_in),
+regs regs0(.clk(clk_neg),
          .en_write(reg_en), .addr_write(reg_addr), .data_write(reg_data),
          .addr_read1(A_addr), .addr_read2(B_addr),
          .data_read1(A), .data_read2(B));
 
+assign clk_neg = ~clk_in;
+		 
 // decodifique a instrucao e
 // gera done indicando dados de saida estaveis
 always @(posedge clk_in) begin

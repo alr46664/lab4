@@ -15,9 +15,9 @@ initial begin
     clk = 0;
     // faca rotina de reset
     RST = 1;
-    #1;
+    #3;
     RST = 0;
-    #1;
+    #3;
     RST = 1;
 end
 

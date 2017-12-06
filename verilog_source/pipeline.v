@@ -44,7 +44,8 @@ wire [DATA_WIDTH-1:0] muxA_data, muxB_data;
 pipeline_ctrl pipe_ctrl(
     .clk(clk), .RST(RST),
     .A_addr(A_addr), .B_addr(B_addr), .ctrl(ctrl_p2),         // isto ira indicar a instrucao a ser executada
-    .reg_addr_p34(reg_addr_p3),                                // controle de hazards - ADDR
+    .ctrl_p34(ctrl_out_p3), .ctrl_p45(ctrl_out_p4), .reg_en_p52(reg_en_p2),
+	.reg_addr_p34(reg_addr_p3),                                // controle de hazards - ADDR
     .reg_addr_p45(reg_addr_out_p4),
     .reg_addr_p52(reg_addr_p2),
     .reg_dataA_p2(A), .reg_dataB_p2(B),                       // controle de hazards - DATA - dados em output de p2

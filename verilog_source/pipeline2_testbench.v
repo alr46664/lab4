@@ -48,9 +48,9 @@ initial begin
     clk_in = 0;
     // faca rotina de reset
     RST = 1;
-    #1;
+    #3;
     RST = 0;
-    #1;
+    #3;
     RST = 1;
 end
 
@@ -237,16 +237,7 @@ always @(negedge clk_in) begin
 		reg_data = 4;
 		reg_en = 0;
 	end
-	17: begin
-		instr[OPCODE_WIDTH-1:0] = EOF;
-		instr[OPCODE_WIDTH+REG_ADDR_WIDTH-1:OPCODE_WIDTH] = 11;
-		instr[OPCODE_WIDTH+REG_ADDR_WIDTH*2-1:OPCODE_WIDTH+REG_ADDR_WIDTH] = 16;
-		instr[INSTR_WIDTH-1:OPCODE_WIDTH+REG_ADDR_WIDTH*2] = 4751;
-		pc_in = 6521;
-		reg_addr = 17;
-		reg_data = 11251;
-		reg_en = 0;
-	end
+	
 	default: begin
 		// nao faca nada de proposito
 	end
@@ -294,7 +285,7 @@ always @(posedge clk_in) begin
 			CALL: $display("CALL)");
 			RET:  $display("RET)");
 			NOP:  $display("NOP)");
-			EOF:  $display("EOF)");
+			
 		    endcase
 	    end
 	end

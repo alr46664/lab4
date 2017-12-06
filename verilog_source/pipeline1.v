@@ -18,23 +18,27 @@ input [PC_WIDTH-1:0] pc_in;
 // declaracao de saida
 
 output [INSTR_WIDTH-1:0] instr;
-output reg [PC_WIDTH-1:0] pc_out;
+output [PC_WIDTH-1:0] pc_out;
 
 // variaveis auxiliares
 reg [PC_WIDTH-1:0] new_pc;
 wire we;
 wire [INSTR_WIDTH-1:0] data;
 
+
 // instancia de Memoria ROM de programa
-mem_program rom0(.clk(clk_in), .we(we), .addr(new_pc), .data_in(data), .data_out(instr));
+mem_program rom0(.clk(clk_neg), .we(we), .addr(new_pc), .data_in(data), .data_out(instr));
 
 assign we   = 0;
 assign data = 0;
+assign clk_neg = ~clk_in;
+
+assign pc_out = new_pc + 1;
 
 // defina o PC de leitura de memoria
 always @(posedge clk_in) begin
     if (!RST) begin
-        new_pc <= PC_INITIAL;
+        new_pc <= PC_INITIAL;		
     end else if (pc_chg) begin
         new_pc <= pc_in;
     end else begin
@@ -42,13 +46,5 @@ always @(posedge clk_in) begin
     end
 end
 
-// defina saida do PC + 1
-always @(posedge clk_in) begin
-    if (!RST) begin
-        pc_out <= PC_INITIAL + 1;
-    end else begin
-        pc_out <= new_pc + 1;
-    end
-end
 
 endmodule

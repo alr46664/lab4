@@ -304,7 +304,7 @@ always @(posedge clk_in) begin
         CALL:     $display("CALL)");
         RET:      $display("RET)");
         NOP:      $display("NOP)");
-        EOF:      $display("EOF)");
+        
         endcase
     end
 end
@@ -337,7 +337,7 @@ always @(negedge clk_in) begin
         CALL:    $display("CALL)");
         RET:     $display("RET)");
         NOP:     $display("NOP)");
-        EOF:     $display("EOF)");
+        
         endcase
     end
 end
