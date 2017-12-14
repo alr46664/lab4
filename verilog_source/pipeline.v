@@ -50,6 +50,7 @@ pipeline_ctrl pipe_ctrl(
     .reg_addr_p52(reg_addr_p2),
     .reg_dataA_p2(A), .reg_dataB_p2(B),                       // controle de hazards - DATA - dados em output de p2
     .reg_data_p34(data_p3),                                      // dados entre p3-4
+    .imm_data_p34(imm),
     .reg_data_p45(reg_data_out_p4),                              // dados entre p4-5
     .reg_data_p52(reg_data_p2),                                  // dados entre p5-2
     .muxA_data(muxA_data), .muxB_data(muxB_data)            // saida dos multiplexadores de hazard

@@ -12,6 +12,7 @@ module pipeline_ctrl(
     reg_dataA_p2,         // controle de hazards - selecao de dados - dados em p2
     reg_dataB_p2,
     reg_data_p34,        // data entre p3-4
+    imm_data_p34,        // data entre p3-4 (immediato)
     reg_data_p45,        // data entre p4-5
     reg_data_p52,        // data entre p5-2
     muxA_data,      // saida dos multiplexadores - entrada de p3
@@ -27,7 +28,7 @@ input [REG_ADDR_WIDTH-1:0] A_addr, B_addr;
 input [CTRL_WIDTH-1:0] ctrl, ctrl_p34, ctrl_p45;
 input reg_en_p52;
 input [REG_ADDR_WIDTH-1:0] reg_addr_p34, reg_addr_p45, reg_addr_p52;
-input signed [DATA_WIDTH-1:0] reg_dataA_p2, reg_dataB_p2, reg_data_p34,reg_data_p45, reg_data_p52;
+input signed [DATA_WIDTH-1:0] reg_dataA_p2, reg_dataB_p2, reg_data_p34, imm_data_p34, reg_data_p45, reg_data_p52;
 
 output reg signed [DATA_WIDTH-1:0] muxA_data, muxB_data;
 
@@ -44,7 +45,9 @@ always @(*) begin
     muxA_data = reg_dataA_p2;
     muxB_data = reg_dataB_p2;
 
-    if (A_addr == reg_addr_p34 && ctrl_p34 != NOP) begin
+    if (ctrl_p34 == LW_IMM) begin
+        muxA_data = imm_data_p34;
+    end else if (A_addr == reg_addr_p34 && ctrl_p34 != NOP) begin
         // atualize os dados que chegam em p3 para os dados que estao entre p3-4
         muxA_data = reg_data_p34;
     end else if (A_addr == reg_addr_p45 && ctrl_p45 != NOP) begin
