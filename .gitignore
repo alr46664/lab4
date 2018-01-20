@@ -7,6 +7,7 @@ __pycache__/
 *.lnk
 
 # sublime workspace
+.directory
 *.sublime-workspace
 
 # generated modelsim binaries
