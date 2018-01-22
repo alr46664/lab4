@@ -7,7 +7,7 @@ module sdram_mem_ctrl(
     col,    // coluna do endereco inicial do pixel
     CS,     // ativa ou desativa a leitura da sdram - 1 desativa / 0 ativa memoria
     op,     // indica a operacao                    - 1 para gravacao / 0 para leitura
-    data // dados para gravacao/leitura na memoria    
+    data    // dados para gravacao/leitura na memoria    
 );
 
 // faz o include dos parameters das instrucoes
@@ -39,6 +39,7 @@ assign DQML = 1b'0;
 
 // esses sinal deve permanescer HIGH para o clk funcionar
 assign cke = 1b'1;
+
 
 // inicializacao da memoria:
     // 1) DQMH = DQML = cke = HIGH 
@@ -78,22 +79,8 @@ assign cke = 1b'1;
 //      write
 //      transicao para estados: READ, WRITE, PRECHARGE, ROW_ACTIVE, 
       
-
-// assign we   = 0;
-// assign data = 0;
-// assign clk_neg = ~clk_in;
-
-// assign pc_out = new_pc + 1;
-
-// // defina o PC de leitura de memoria
-// always @(posedge clk_in) begin
-//     if (!RST) begin
-//         new_pc <= PC_INITIAL;		
-//     end else if (pc_chg) begin
-//         new_pc <= pc_in;
-//     end else begin
-//         new_pc <= new_pc + 1;
-//     end
-// end
+//DECODIFICADOR DE PROXIMO ESTADO
+//DECODIFICADOR DE MEMORIA
+//DECODIFICADOR DE SAIDA
 
 endmodule
