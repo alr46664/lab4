@@ -21,7 +21,7 @@ input [COL_WIDTH-1:0] col;
 
 // declaracao de saida
 
-inputoutput reg [DATA_WIDTH-1:0] data;
+inout reg [DATA_WIDTH-1:0] data;
 
 // variaveis auxiliares
 wire DQMH, DQML;
