@@ -33,6 +33,27 @@ wire [BANK_WIDTH-1:0] bank;
 // TODO: devemos pesquisar como instanciar ela no Quartus
 // sdram sdram0(.clk(clk), .cke(cke), .CS(CS), .RAS(RAS), .CAS(CAS), .WE(WE), .DQMH(DQMH), .DQML(DQML), .addr(addr), .ba(bank), .DQ(data));
 
+//      ESPECIFICACOES DO PROBLEMA 2
+
+// Esta memoria comporta uma imagem de 1920 x 1440 x 24 bits true color em um unico bank de 8K x 1K x 16 bits (linha x coluna) ocupando 
+// ao todo 66% do banco (1920 x 1440 x 2 enderecos do banco / (2^13 x 2^10)) supondo que armazenemos um pixel de 24 bits em duas celulas de memoria,
+// estando 16 bits em uma celula e os outros 8 bits na subsequente.
+// Logo precisamos garantir que conseguimos ler a memoria e realizar precharge / refresh rapido o suficiente para podermos usar um unico banco
+// da memoria, simplificando o controle em nosso verilog.
+// Para o VGA funcionar, precisamos fornecer para o monitor ~18433 pixels / ms (640 x 480 pixels x 60 Hz / 1000 ms). 
+// Dessa forma, podemos tentar fazer um burst da pagina inteira do bank da memoria, selecionando 640 x 480 pixels para um buffer. 
+// Lembrando que podemos interromper o burst a qualquer momento. Logo, podemos selecionar a linha e coluna da memoria, solicitar o burst da pagina
+// inteira, deixar o burst operando ate que tenhamos recebido os 640x480 pixels em nosso buffer. Feito isso, podemos realizar um refresh global da
+// memoria, garantindo assim a integridade dos dados armazenados nela.
+//
+// Para que isso tudo funcione, precisaremos de um buffer de 600 KB (640 x 480 pixels x 16 bits / (8 bits por byte * 1024 kilobytes)). Isso é 
+// perfeitamente possivel usando os recursos da placa Altera Cyclone IV !
+// Assim sendo, precisamos APENAS garantir que os dados da memoria estarao acessiveis e nao serao corrompidos ao longo do tempo (ou seja,
+// precisamos realizar o precharge e refresh de acordo com os requisitos de temporizacao memoria, mantendo um fluxo de pixels para o VGA constante).
+// 
+//        TEMPORIZACOES
+// REFRESH (banco inteiro - 8192 linhas) = 64 ms
+
 // esses sinais devem estar em LOW o tempo todo (ativando data como entrada/saida)
 assign DQMH = 1b'0;
 assign DQML = 1b'0;
