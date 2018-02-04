@@ -52,40 +52,40 @@ end
 // gerandos os testes aqui
 always @(negedge clk_in) begin
 	// gere casos de teste
-	testes = testes+1;
+	testes <= testes+1;
 	// DESCREVA OS CASOS DE TESTE ABAIXO
 	case(testes)
 	0: begin
-	    pc_chg = 0;
-	    pc_in  = 5;
+	    pc_chg <= 0;
+	    pc_in  <= 5;
 	end
 	1: begin
-	    pc_chg = 0;
-	    pc_in  = 15;
+	    pc_chg <= 0;
+	    pc_in  <= 15;
 	end
 	2: begin
-	    pc_chg = 1;
-	    pc_in  = 20;
+	    pc_chg <= 1;
+	    pc_in  <= 20;
 	end
 	3: begin
-		pc_chg = 1;
-		pc_in  = 1;
+		pc_chg <= 1;
+		pc_in  <= 1;
 	end
 	4: begin
-		pc_chg = 0;
-		pc_in  = 5;
+		pc_chg <= 0;
+		pc_in  <= 5;
 	end
 	5: begin
-		pc_chg = 0;
-		pc_in  = 5;
+		pc_chg <= 0;
+		pc_in  <= 5;
 	end
 	6: begin
-		pc_chg = 0;
-		pc_in  = 5;
+		pc_chg <= 0;
+		pc_in  <= 5;
 	end
 	7: begin
-		pc_chg = 0;
-		pc_in  = 5;
+		pc_chg <= 0;
+		pc_in  <= 5;
 	end
 	default: begin
 		// nao faca nada de proposito

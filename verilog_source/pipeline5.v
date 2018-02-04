@@ -6,7 +6,7 @@ module pipeline5(
     addr,
     data_out,
     addr_out,
-    en_out,
+    en_out
 );
 
 // faz o include dos parameters das instrucoes
@@ -38,6 +38,7 @@ always @(posedge clk_in) begin
         case (ctrl_in)
         // ------------ Data Trasnfer -----------------
         LW:       en_out <= 1;
+        LW_IMM:   en_out <= 1;
         // ------------ Arithmetic -----------------
         ADD:      en_out <= 1;
         SUB:      en_out <= 1;

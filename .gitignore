@@ -11,8 +11,7 @@ __pycache__/
 *.sublime-workspace
 
 # generated modelsim binaries
-modelsim/work
-modelsim/wlft*
+modelsim/
 
 # ignore generated quartus binaries
 quartus/assembler

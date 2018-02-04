@@ -76,197 +76,197 @@ end
 // gerandos os testes aqui
 always @(negedge clk_in) begin
     // gere casos de teste
-    testes = testes+1;
+    testes <= testes+1;
     // DESCREVA OS CASOS DE TESTE ABAIXO
     case(testes)
     0: begin
-        ctrl_in = LW;
-        pc_in   = 45000;
-        A_addr  = 5;
-        B_addr  = 6;
-        A       = 0;
-        B       = 8;
-        imm     = 42;
+        ctrl_in <= LW;
+        pc_in   <= 45000;
+        A_addr  <= 5;
+        B_addr  <= 6;
+        A       <= 0;
+        B       <= 8;
+        imm     <= 42;
     end
     1: begin
-        ctrl_in = SW;
-        pc_in   = 32000;
-        A_addr  = 8;
-        B_addr  = 7;
-        A       = 5;
-        B       = 65;
-        imm     = 45;
+        ctrl_in <= SW;
+        pc_in   <= 32000;
+        A_addr  <= 8;
+        B_addr  <= 7;
+        A       <= 5;
+        B       <= 65;
+        imm     <= 45;
     end
     2: begin
-        ctrl_in = ADD;
-        pc_in   = 38000;
-        A_addr  = 10;
-        B_addr  = 9;
-        A       = 50;
-        B       = 85;
-        imm     = 0;
+        ctrl_in <= ADD;
+        pc_in   <= 38000;
+        A_addr  <= 10;
+        B_addr  <= 9;
+        A       <= 50;
+        B       <= 85;
+        imm     <= 0;
     end
     3: begin
-        ctrl_in = SUB;
-        pc_in   = 40000;
-        A_addr  = 20;
-        B_addr  = 15;
-        A       = 150;
-        B       = 25;
-        imm     = 0;
+        ctrl_in <= SUB;
+        pc_in   <= 40000;
+        A_addr  <= 20;
+        B_addr  <= 15;
+        A       <= 150;
+        B       <= 25;
+        imm     <= 0;
     end
     4: begin
-        ctrl_in = MUL;
-        pc_in   = 1700;
-        A_addr  = 18;
-        B_addr  = 4;
-        A       = 5;
-        B       = 10;
-        imm     = 0;
+        ctrl_in <= MUL;
+        pc_in   <= 1700;
+        A_addr  <= 18;
+        B_addr  <= 4;
+        A       <= 5;
+        B       <= 10;
+        imm     <= 0;
     end
     5: begin
-        ctrl_in = DIV;
-        pc_in   = 300;
-        A_addr  = 14;
-        B_addr  = 16;
-        A       = 50;
-        B       = -2;
-        imm     = 0;
+        ctrl_in <= DIV;
+        pc_in   <= 300;
+        A_addr  <= 14;
+        B_addr  <= 16;
+        A       <= 50;
+        B       <= -2;
+        imm     <= 0;
     end
     6: begin
-        ctrl_in = AND;
-        pc_in   = 1000;
-        A_addr  = 7;
-        B_addr  = 3;
-        A       = 5;
-        B       = 7;
-        imm     = 0;
+        ctrl_in <= AND;
+        pc_in   <= 1000;
+        A_addr  <= 7;
+        B_addr  <= 3;
+        A       <= 5;
+        B       <= 7;
+        imm     <= 0;
     end
     7: begin
-        ctrl_in = OR;
-        pc_in   = 7500;
-        A_addr  = 11;
-        B_addr  = 29;
-        A       = 6;
-        B       = 1;
-        imm     = 0;
+        ctrl_in <= OR;
+        pc_in   <= 7500;
+        A_addr  <= 11;
+        B_addr  <= 29;
+        A       <= 6;
+        B       <= 1;
+        imm     <= 0;
     end
     8: begin
-        ctrl_in = CMP;
-        pc_in   = 9000;
-        A_addr  = 18;
-        B_addr  = 19;
-        A       = 80;
-        B       = -2;
-        imm     = 0;
+        ctrl_in <= CMP;
+        pc_in   <= 9000;
+        A_addr  <= 18;
+        B_addr  <= 19;
+        A       <= 80;
+        B       <= -2;
+        imm     <= 0;
     end
     9: begin
-        ctrl_in = NOT;
-        pc_in   = 15000;
-        A_addr  = 9;
-        B_addr  = 0;
-        A       = 70;
-        B       = 0;
-        imm     = 0;
+        ctrl_in <= NOT;
+        pc_in   <= 15000;
+        A_addr  <= 9;
+        B_addr  <= 0;
+        A       <= 70;
+        B       <= 0;
+        imm     <= 0;
     end
     10: begin
-        ctrl_in = JR;
-        pc_in   = 14250;
-        A_addr  = 13;
-        B_addr  = 0;
-        A       = 150;
-        B       = 0;
-        imm     = 0;
+        ctrl_in <= JR;
+        pc_in   <= 14250;
+        A_addr  <= 13;
+        B_addr  <= 0;
+        A       <= 150;
+        B       <= 0;
+        imm     <= 0;
     end
     11: begin
-        ctrl_in = JPC;
-        pc_in   = 12000;
-        A_addr  = 0;
-        B_addr  = 0;
-        A       = 0;
-        B       = 0;
-        imm     = 350;
+        ctrl_in <= JPC;
+        pc_in   <= 12000;
+        A_addr  <= 0;
+        B_addr  <= 0;
+        A       <= 0;
+        B       <= 0;
+        imm     <= 350;
     end
     12: begin
-        ctrl_in = CMP;
-        pc_in   = 11529;
-        A_addr  = 2;
-        B_addr  = 3;
-        A       = -5;
-        B       = 80;
-        imm     = 0;
+        ctrl_in <= CMP;
+        pc_in   <= 11529;
+        A_addr  <= 2;
+        B_addr  <= 3;
+        A       <= -5;
+        B       <= 80;
+        imm     <= 0;
     end
     13: begin
-        ctrl_in = BRFL;
-        pc_in   = 11530;
-        A_addr  = 7;
-        B_addr  = 8;
-        A       = 5000;
-        B       = 1;
-        imm     = 1;
+        ctrl_in <= BRFL;
+        pc_in   <= 11530;
+        A_addr  <= 7;
+        B_addr  <= 8;
+        A       <= 5000;
+        B       <= 1;
+        imm     <= 1;
     end
     14: begin
-        ctrl_in = CMP;
-        pc_in   = 12767;
-        A_addr  = 15;
-        B_addr  = 9;
-        A       = -1;
-        B       = 1;
-        imm     = 0;
+        ctrl_in <= CMP;
+        pc_in   <= 12767;
+        A_addr  <= 15;
+        B_addr  <= 9;
+        A       <= -1;
+        B       <= 1;
+        imm     <= 0;
     end
     15: begin
-        ctrl_in = BRFL;
-        pc_in   = 12768;
-        A_addr  = 17;
-        B_addr  = 18;
-        A       = 7000;
-        B       = 0;
-        imm     = 1;
+        ctrl_in <= BRFL;
+        pc_in   <= 12768;
+        A_addr  <= 17;
+        B_addr  <= 18;
+        A       <= 7000;
+        B       <= 0;
+        imm     <= 1;
     end
     16: begin
-        ctrl_in = CALL;
-        pc_in   = 17541;
-        A_addr  = 19;
-        B_addr  = 0;
-        A       = 48000;
-        B       = 0;
-        imm     = 0;
+        ctrl_in <= CALL;
+        pc_in   <= 17541;
+        A_addr  <= 19;
+        B_addr  <= 0;
+        A       <= 48000;
+        B       <= 0;
+        imm     <= 0;
     end
     17: begin
-        ctrl_in = RET;
-        pc_in   = 48000;
-        A_addr  = 0;
-        B_addr  = 0;
-        A       = 0;
-        B       = 0;
-        imm     = 0;
+        ctrl_in <= RET;
+        pc_in   <= 48000;
+        A_addr  <= 0;
+        B_addr  <= 0;
+        A       <= 0;
+        B       <= 0;
+        imm     <= 0;
     end
     18: begin
-        ctrl_in = NOP;
-        pc_in   = 17542;
-        A_addr  = 0;
-        B_addr  = 0;
-        A       = 0;
-        B       = 0;
-        imm     = 0;
+        ctrl_in <= NOP;
+        pc_in   <= 17542;
+        A_addr  <= 0;
+        B_addr  <= 0;
+        A       <= 0;
+        B       <= 0;
+        imm     <= 0;
     end
     19: begin
-        ctrl_in = LW_IMM;
-        pc_in   = 45000;
-        A_addr  = 8;
-        B_addr  = 0;
-        A       = 95;
-        B       = 0;
-        imm     = 42;
+        ctrl_in <= LW_IMM;
+        pc_in   <= 45000;
+        A_addr  <= 8;
+        B_addr  <= 0;
+        A       <= 95;
+        B       <= 0;
+        imm     <= 42;
     end
     20: begin
-        ctrl_in = ADD;
-        pc_in   = 17543;
-        A_addr  = 0;
-        B_addr  = 1;
-        A       = 0;
-        B       = 1;
-        imm     = 1;
+        ctrl_in <= ADD;
+        pc_in   <= 17543;
+        A_addr  <= 0;
+        B_addr  <= 1;
+        A       <= 0;
+        B       <= 1;
+        imm     <= 1;
     end
     default: begin
         // nao faca nada de proposito

@@ -22,7 +22,7 @@ output [PC_WIDTH-1:0] pc_out;
 
 // variaveis auxiliares
 reg [PC_WIDTH-1:0] new_pc;
-wire we;
+wire we, clk_neg;
 wire [INSTR_WIDTH-1:0] data;
 
 
