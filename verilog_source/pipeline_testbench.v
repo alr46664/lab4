@@ -4,15 +4,15 @@ module pipeline_testbench();
 `include "params_proc.v"
 
 // input output
-reg clk, RST;
+reg clk_in, RST;
 
 // instancia testada
-pipeline pipe(.clk(clk), .RST(RST));
+pipeline pipe(.clk_in(clk_in), .RST(RST));
 
 // inicializando testes
 initial begin
     // inicilizacao dos inputs
-    clk = 0;
+    clk_in = 0;
     // faca rotina de reset
     RST = 1;
     #3;
@@ -25,7 +25,7 @@ end
 always begin
     // gere o clock quando os sinais de teste estiverem estabilizados
     #4;
-    clk = !clk;
+    clk_in = !clk_in;
 end
 
 
