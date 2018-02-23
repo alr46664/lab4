@@ -1,3 +1,6 @@
+// endereo de registradores especiais
+parameter REG_AUX_0  = 5'd0,  // registrador auxiliar 0
+          REG_AUX_1  = 5'd1;  // registrador auxiliar 1
 
 // definicoes do PC
 parameter PC_INITIAL = 16'd0;   // endereco que comeca a execucao do programa
@@ -14,7 +17,9 @@ parameter MEM_WIDTH        = 16,  // TAMANHO EM BITS MEMORIA
           CS_HAZARD_WIDTH  = 2,   // TAMANHO DO SELETOR DO MULTIPLEXADOR DE HAZARD
           PILHA_CTRL_WIDTH = 2,   // TAMANHO DO SELETOR DE FUNCAO DA PILHA
 		  PILHA_WIDTH      = 8,   // TAMANHO DA PILHA
-		  IRQ_WIDTH        = 5;   // TAMANHO DO IRQ EM BITS
+		  IRQ_WIDTH        = 5,   // TAMANHO DO IRQ EM BITS
+		  INTERRUPT_WIDTH  = 8,   // QUANTIDADE DE INTERRUPCOES DO PROCESSADOR
+          DEVICES_QTD      = 4;   // QUANTIDADE DE DISPOSITIVOS EXTERNOS QUE EMITEM INTERRUPCAO
 
 // definicao das instrucoes
 parameter LW     = 6'b000000, // faz load do valor armazenado no endero de memoria (B + imm)
@@ -40,7 +45,7 @@ parameter PILHA_PUSH  = 2'b00,
           PILHA_POP   = 2'b01,
           PILHA_RESET = 2'b11;
 			 
-// definicoes das interrupcoes. As mascaradas comeÃ§am sempre com 1 e por sua vez tem prioridade sobre as outras.		
+// definicoes das interrupcoes. As mascaradas começam sempre com 1 e por sua vez tem prioridade sobre as outras.		
 parameter IRQ_0  = 5'b10000,
 		 IRQ_1  = 5'b10001,
 		 IRQ_2  = 5'b10010,
