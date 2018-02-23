@@ -21,3 +21,4 @@ quartus/simulation
 quartus/output_files
 modelsim/*.wlf
 *.bak
+.vs/slnx.sqlite
